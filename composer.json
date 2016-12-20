@@ -6,8 +6,8 @@
     },
     "extra":{
         "map":[
-            ["app/etc/modules/Wfn_Reptags.xml", "app/etc/modules/Wfn_Reptags.xml"],
-            ["app/code/local/Wfn/Reptags/", "app/code/local/Wfn/Reptags/"]
+            ["src/app/etc/modules/Wfn_Reptags.xml", "app/etc/modules/Wfn_Reptags.xml"],
+            ["src/app/code/local/Wfn/Reptags/", "app/code/local/Wfn/Reptags/"]
         ]
     }
 }
