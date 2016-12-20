@@ -1,4 +1,10 @@
 <?xml version="1.0"?>
+<!--
+/**
+ * This file is used to configure the module. Defines all models, blocks,
+ * helpers, etc.
+ */
+-->
 <config>
     <modules>
         <Wfn_Reptags>

@@ -1,4 +1,9 @@
 <?xml version="1.0"?>
+<!--
+/**
+ * This file is used to activate the module.
+ */
+-->
 <config>
     <modules>
         <Wfn_Reptags>
