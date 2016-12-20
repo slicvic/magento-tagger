@@ -6,9 +6,9 @@
 -->
 <config>
     <modules>
-        <Wfn_Reptags>
+        <Wfn_Reptag>
             <active>true</active>
             <codePool>local</codePool>
-        </Wfn_Reptags>
+        </Wfn_Reptag>
     </modules>
 </config>

@@ -1,13 +1,13 @@
 {
-    "name": "wfn/rep-tags",
+    "name": "wfn/rep-tag",
     "type": "magento-module",
     "require": {
         "magento-hackathon/magento-composer-installer": "*"
     },
     "extra":{
         "map":[
-            ["src/app/etc/modules/Wfn_Reptags.xml", "app/etc/modules/Wfn_Reptags.xml"],
-            ["src/app/code/local/Wfn/Reptags/", "app/code/local/Wfn/Reptags/"]
+            ["src/app/etc/modules/Wfn_Reptag.xml", "app/etc/modules/Wfn_Reptag.xml"],
+            ["src/app/code/local/Wfn/Reptag/", "app/code/local/Wfn/Reptag/"]
         ]
     }
 }

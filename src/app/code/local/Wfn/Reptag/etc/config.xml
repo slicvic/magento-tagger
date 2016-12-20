@@ -7,8 +7,8 @@
 -->
 <config>
     <modules>
-        <Wfn_Reptags>
+        <Wfn_Reptag>
             <version>1.0.0.0</version>
-        </Wfn_Reptags>
+        </Wfn_Reptag>
     </modules>
 </config>
