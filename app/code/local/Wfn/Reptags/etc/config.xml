@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Wfn_Reptags>
+            <version>1.0.0.0</version>
+        </Wfn_Reptags>
+    </modules>
+</config>
