@@ -12,7 +12,7 @@ $installer = $this;
 $installer->startSetup();
 
 /**
- * Create table 'wfn_reptag_tag' for storing tags
+ * Create table 'wfn_reptag_tag' for storing tags.
  */
 $table = $installer->getConnection()
     ->newTable($installer->getTable('wfn_reptag/tag'))
