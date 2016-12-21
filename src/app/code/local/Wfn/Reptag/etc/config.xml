@@ -12,6 +12,13 @@
         </Wfn_Reptag>
     </modules>
     <global>
+        <resources>
+            <wfn_reptag_setup>
+                <setup>
+                    <module>Wfn_Reptag</module>
+                </setup>
+            </wfn_reptag_setup>
+        </resources>
         <helpers>
             <wfn_reptag>
                 <class>Wfn_Reptag_Helper</class>
