@@ -19,6 +19,11 @@ class Wfn_Reptag_Model_Resource_Tag_Relation extends Mage_Core_Model_Resource_Db
      */
     protected function _initUniqueFields()
     {
+        $this->_uniqueFields = [[
+            'field' => ['tag_id', 'entity_id', 'entity_type'],
+            'title' => Mage::helper('wfn_reptag')->__('Tag ID, Entity ID and Entity Type combination should be unique')
+        ]];
 
+        return $this;
     }
 }
