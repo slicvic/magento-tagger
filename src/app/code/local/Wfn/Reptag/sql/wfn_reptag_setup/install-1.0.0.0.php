@@ -29,6 +29,7 @@ $table = $installer->getConnection()
         $installer->getIdxName('wfn_reptag/tag', ['name'], Varien_Db_Adapter_Interface::INDEX_TYPE_UNIQUE),
         ['name'],
         ['type' => Varien_Db_Adapter_Interface::INDEX_TYPE_UNIQUE]);
+
 $installer->getConnection()->createTable($table);
 
 /**
@@ -51,19 +52,19 @@ $table = $installer->getConnection()
     ->addColumn('entity_id', Varien_Db_Ddl_Table::TYPE_INTEGER, null, [
         'unsigned' => true,
         'nullable' => false,
-        ], 'Entity ID of order or customer')
+        ], 'Entity id of order or customer')
     ->addColumn('entity_type', Varien_Db_Ddl_Table::TYPE_VARCHAR, 8, [
         'nullable' => false,
         ], 'Entity type (order or customer)')
     ->addColumn('created_uid', Varien_Db_Ddl_Table::TYPE_INTEGER, null, [
         'unsigned' => true,
         'nullable' => false,
-        ], 'User ID who added record')
+        ], 'User id who added record')
     ->addColumn('created_at', Varien_Db_Ddl_Table::TYPE_TIMESTAMP, null)
     ->addIndex($installer->getIdxName('wfn_reptag/relation', ['tag_id']), ['tag_id'])
     ->addIndex($installer->getIdxName('wfn_reptag/relation', ['entity_id']), ['entity_id'])
     ->addIndex($installer->getIdxName('wfn_reptag/relation', ['entity_type']), ['entity_type'])
-    ->addIndex( // Tag ID, Entity ID and Entity Type combination should be unique
+    ->addIndex( // Tag id, entity id and entity type combination should be unique
         $installer->getIdxName('wfn_reptag/relation', ['tag_id', 'entity_id', 'entity_type'], Varien_Db_Adapter_Interface::INDEX_TYPE_UNIQUE),
         ['tag_id', 'entity_id', 'entity_type'],
         ['type' => Varien_Db_Adapter_Interface::INDEX_TYPE_UNIQUE])
@@ -81,6 +82,7 @@ $table = $installer->getConnection()
         'user_id',
         Varien_Db_Ddl_Table::ACTION_NO_ACTION,
         Varien_Db_Ddl_Table::ACTION_CASCADE);
+
 $installer->getConnection()->createTable($table);
 
 $installer->endSetup();
