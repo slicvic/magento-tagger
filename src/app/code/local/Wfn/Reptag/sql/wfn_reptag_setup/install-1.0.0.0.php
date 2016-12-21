@@ -1,10 +1,8 @@
 <?php
 /**
- * This install script will be used to create the database tables
- * for storing tags and the associations between tags and other entities
- * such as orders and customers.
+ * This install script will be used to create the following database tables
+ * for storing tags and the associations between tags and orders/customers.
  *
- * The following tables will be created:
  * - wfn_reptag_tag
  * - wfn_reptag_tag_relation
  */
@@ -35,7 +33,7 @@ $installer->getConnection()->createTable($table);
 
 /**
  * Create table 'wfn_reptag_tag_relation' for storing polymorphic associations
- * between tags and other entities (e.g. orders, customers)
+ * between tags and orders/customers.
  */
 $table = $installer->getConnection()
     ->newTable($installer->getTable('wfn_reptag/relation'))
