@@ -11,4 +11,23 @@
             <version>1.0.0.0</version>
         </Wfn_Reptag>
     </modules>
+    <global>
+        <models>
+            <wfn_reptag>
+                <class>Wfn_Reptag_Model</class>
+                <resourceModel>wfn_reptag_resource</resourceModel>
+            </wfn_reptag>
+            <wfn_reptag_resource>
+                <class>Wfn_Reptag_Model_Resource</class>
+                <entities>
+                    <tag>
+                        <table>wfn_reptag_tag</table>
+                    </tag>
+                    <relation>
+                        <table>wfn_reptag_tag_relation</table>
+                    </relation>
+                </entities>
+            </wfn_reptag_resource>
+        </models>
+    </global>
 </config>
