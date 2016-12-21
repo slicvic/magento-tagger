@@ -25,7 +25,7 @@ $table = $installer->getConnection()
     ->addColumn('name', Varien_Db_Ddl_Table::TYPE_VARCHAR, 255, [
         'nullable' => false,
         ])
-    ->addIndex( // Make name column unique
+    ->addIndex( // Name field should be unique
         $installer->getIdxName('wfn_reptag/tag', ['name'], Varien_Db_Adapter_Interface::INDEX_TYPE_UNIQUE),
         ['name'],
         ['type' => Varien_Db_Adapter_Interface::INDEX_TYPE_UNIQUE]);
@@ -63,7 +63,7 @@ $table = $installer->getConnection()
     ->addIndex($installer->getIdxName('wfn_reptag/relation', ['tag_id']), ['tag_id'])
     ->addIndex($installer->getIdxName('wfn_reptag/relation', ['entity_id']), ['entity_id'])
     ->addIndex($installer->getIdxName('wfn_reptag/relation', ['entity_type']), ['entity_type'])
-    ->addIndex(
+    ->addIndex( // Tag ID, Entity ID and Entity Type combination should be unique
         $installer->getIdxName('wfn_reptag/relation', ['tag_id', 'entity_id', 'entity_type'], Varien_Db_Adapter_Interface::INDEX_TYPE_UNIQUE),
         ['tag_id', 'entity_id', 'entity_type'],
         ['type' => Varien_Db_Adapter_Interface::INDEX_TYPE_UNIQUE])
