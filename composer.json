@@ -9,7 +9,7 @@
             ["src/app/etc/modules/Wfn_Reptag.xml", "app/etc/modules/Wfn_Reptag.xml"],
             ["src/app/code/local/Wfn/Reptag/", "app/code/local/Wfn/Reptag/"],
             ["src/app/design/adminhtml/default/default/template/wfn-reptag/", "app/design/adminhtml/default/default/template/wfn-reptag/"],
-            ["src/app/design/adminhtml/default/default/layout/wfn_reptag.xml", "app/design/adminhtml/default/default/layout/wfn_reptag.xml"],
+            ["src/app/design/adminhtml/default/default/layout/wfn_reptag.xml", "app/design/adminhtml/default/default/layout/wfn_reptag.xml"]
         ]
     }
 }
