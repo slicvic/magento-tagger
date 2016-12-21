@@ -1,6 +1,6 @@
 <?php
 /**
- * This class defines a tag collection.
+ * Tag collection.
  */
 class Wfn_Reptag_Model_Resource_Tag_Collection
     extends Mage_Core_Model_Resource_Db_Collection_Abstract

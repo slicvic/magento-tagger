@@ -1,6 +1,6 @@
 <?php
 /**
- * This class defines a tag resource model.
+ * Tag resource model.
  */
 class Wfn_Reptag_Model_Resource_Tag extends Mage_Core_Model_Resource_Db_Abstract
 {

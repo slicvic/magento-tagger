@@ -1,6 +1,6 @@
 <?php
 /**
- * This class defines a tag model.
+ * Tag model.
  */
 class Wfn_Reptag_Model_Tag extends Mage_Core_Model_Abstract
 {
