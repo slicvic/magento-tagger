@@ -1,7 +1,7 @@
 <?php
 /**
- * This install script will be used to create the following database tables
- * for storing tags and the associations between tags and orders/customers.
+ * This install script will create the following database tables
+ * for storing tags and their related entities.
  *
  * - wfn_reptag_tag
  * - wfn_reptag_tag_relation
@@ -33,8 +33,8 @@ $table = $installer->getConnection()
 $installer->getConnection()->createTable($table);
 
 /**
- * Create table 'wfn_reptag_tag_relation' for storing polymorphic associations
- * between tags and orders/customers.
+ * Create table 'wfn_reptag_tag_relation' for storing many-to-many
+ * relationships.
  */
 $table = $installer->getConnection()
     ->newTable($installer->getTable('wfn_reptag/relation'))
@@ -52,19 +52,19 @@ $table = $installer->getConnection()
     ->addColumn('entity_id', Varien_Db_Ddl_Table::TYPE_INTEGER, null, [
         'unsigned' => true,
         'nullable' => false,
-        ], 'Id of order or customer')
+        ])
     ->addColumn('entity_type', Varien_Db_Ddl_Table::TYPE_VARCHAR, 8, [
         'nullable' => false,
-        ], 'Entity type (order or customer)')
+        ])
     ->addColumn('created_uid', Varien_Db_Ddl_Table::TYPE_INTEGER, null, [
         'unsigned' => true,
         'nullable' => false,
-        ], 'User Id who added record')
+        ], 'Admin user ID who added record')
     ->addColumn('created_at', Varien_Db_Ddl_Table::TYPE_TIMESTAMP, null)
     ->addIndex($installer->getIdxName('wfn_reptag/relation', ['tag_id']), ['tag_id'])
     ->addIndex($installer->getIdxName('wfn_reptag/relation', ['entity_id']), ['entity_id'])
     ->addIndex($installer->getIdxName('wfn_reptag/relation', ['entity_type']), ['entity_type'])
-    ->addIndex( // Tag Id, entity Id and entity type combination should be unique
+    ->addIndex( // Tag ID, entity ID and entity type combination should be unique
         $installer->getIdxName('wfn_reptag/relation', ['tag_id', 'entity_id', 'entity_type'], Varien_Db_Adapter_Interface::INDEX_TYPE_UNIQUE),
         ['tag_id', 'entity_id', 'entity_type'],
         ['type' => Varien_Db_Adapter_Interface::INDEX_TYPE_UNIQUE])
