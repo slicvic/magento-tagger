@@ -21,7 +21,7 @@ class Wfn_Reptag_Model_Resource_Tag extends Mage_Core_Model_Resource_Db_Abstract
     {
         $this->_uniqueFields = [[
             'field' => 'name',
-            'title' => Mage::helper('tag')->__('Tag')
+            'title' => Mage::helper('wfn_reptag')->__('Tag')
         ]];
 
         return $this;
