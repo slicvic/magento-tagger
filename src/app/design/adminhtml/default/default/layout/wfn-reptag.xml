@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<layout>
+    <!-- Add a new Tags tab to order view -->
+    <adminhtml_sales_order_view>
+        <reference name="sales_order_tabs">
+            <action method="addTab">
+                <name>order_tab_wfn_reptag</name>
+                <block>wfn_reptag/adminhtml_sales_order_view_tab_tags</block>
+            </action>
+        </reference>
+    </adminhtml_sales_order_view>
+</layout>

@@ -11,14 +11,21 @@
             <version>1.0.0.0</version>
         </Wfn_Reptag>
     </modules>
+    <adminhtml>
+        <layout>
+            <updates>
+                <wfn_reptag>
+                    <file>wfn-reptag.xml</file>
+                </wfn_reptag>
+            </updates>
+        </layout>
+    </adminhtml>
     <global>
-        <resources>
-            <wfn_reptag_setup>
-                <setup>
-                    <module>Wfn_Reptag</module>
-                </setup>
-            </wfn_reptag_setup>
-        </resources>
+        <blocks>
+            <wfn_reptag>
+                <class>Wfn_Reptag_Block</class>
+            </wfn_reptag>
+        </blocks>
         <helpers>
             <wfn_reptag>
                 <class>Wfn_Reptag_Helper</class>
@@ -41,5 +48,12 @@
                 </entities>
             </wfn_reptag_resource>
         </models>
+        <resources>
+            <wfn_reptag_setup>
+                <setup>
+                    <module>Wfn_Reptag</module>
+                </setup>
+            </wfn_reptag_setup>
+        </resources>
     </global>
 </config>
