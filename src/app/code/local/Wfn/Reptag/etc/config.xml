@@ -15,7 +15,7 @@
         <layout>
             <updates>
                 <wfn_reptag>
-                    <file>wfn-reptag.xml</file>
+                    <file>wfn_reptag.xml</file>
                 </wfn_reptag>
             </updates>
         </layout>

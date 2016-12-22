@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <layout>
-    <!-- Add a new Tags tab to order view -->
+    <!-- Add a Tags tab to the order view -->
     <adminhtml_sales_order_view>
         <reference name="sales_order_tabs">
             <action method="addTab">
