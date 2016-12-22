@@ -1,5 +1,5 @@
 {
-    "name": "wfn/rep-tag",
+    "name": "wfn/magento-module-rep-tag",
     "type": "magento-module",
     "require": {
         "magento-hackathon/magento-composer-installer": "*"
@@ -7,9 +7,11 @@
     "extra":{
         "map":[
             ["src/app/etc/modules/Wfn_Reptag.xml", "app/etc/modules/Wfn_Reptag.xml"],
-            ["src/app/code/local/Wfn/Reptag/", "app/code/local/Wfn/Reptag/"],
-            ["src/app/design/adminhtml/default/default/template/wfn_reptag/", "app/design/adminhtml/default/default/template/wfn_reptag/"],
-            ["src/app/design/adminhtml/default/default/layout/wfn_reptag.xml", "app/design/adminhtml/default/default/layout/wfn_reptag.xml"]
+            ["src/app/code/local/Wfn/Reptag/", "app/code/local/Wfn/Reptag"],
+            ["src/app/design/adminhtml/default/default/template/wfn_reptag/", "app/design/adminhtml/default/default/template/wfn_reptag"],
+            ["src/app/design/adminhtml/default/default/layout/wfn_reptag.xml", "app/design/adminhtml/default/default/layout/wfn_reptag.xml"],
+            ["src/js/wfn_reptag/", "js/wfn_reptag"],
+            ["src/skin/adminhtml/default/default/wfn_reptag/", "skin/adminhtml/default/default/wfn_reptag"]
         ]
     }
 }
