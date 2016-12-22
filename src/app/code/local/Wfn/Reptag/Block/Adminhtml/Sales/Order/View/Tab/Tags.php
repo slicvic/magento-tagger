@@ -7,7 +7,7 @@ class Wfn_Reptag_Block_Adminhtml_Sales_Order_View_Tab_Tags
     implements Mage_Adminhtml_Block_Widget_Tab_Interface
 {
     /**
-     * Define the block template.
+     * Define the template file.
      */
     public function _construct()
     {

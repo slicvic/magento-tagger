@@ -1,1 +1,32 @@
-you go tags!
+<input type="text" id="input-tags" name="" value="">
+<script type="text/javascript">
+var tagInput = jQuery('#input-tags');
+var tagInputSelectize;
+
+tagInput.selectize({
+    plugins: ['remove_button'],
+    delimiter: ',',
+    persist: false,
+    /*options: [
+        {value: 1, text: 'one'},
+        {value: 2, text: 'two'},
+
+    ],
+    items: [
+        1, 2
+    ],*/
+    create: function(input) {
+        return {
+            value: input,
+            text: input
+        }
+    }
+});
+
+tagInputSelectize = tagInput[0].selectize;
+tagInputSelectize.addOption({value: 1, text: 'one'});
+tagInputSelectize.addOption({value: 2, text: 'two'});
+tagInputSelectize.addItem(1);
+tagInputSelectize.addItem(2);
+
+</script>
