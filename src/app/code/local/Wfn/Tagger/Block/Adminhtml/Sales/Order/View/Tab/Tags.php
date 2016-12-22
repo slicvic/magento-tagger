@@ -2,7 +2,7 @@
 /**
  * Order view tags tab.
  */
-class Wfn_Reptag_Block_Adminhtml_Sales_Order_View_Tab_Tags
+class Wfn_Tagger_Block_Adminhtml_Sales_Order_View_Tab_Tags
     extends Mage_Adminhtml_Block_Sales_Order_Abstract
     implements Mage_Adminhtml_Block_Widget_Tab_Interface
 {
@@ -12,7 +12,7 @@ class Wfn_Reptag_Block_Adminhtml_Sales_Order_View_Tab_Tags
     public function _construct()
     {
         parent::_construct();
-        $this->setTemplate('wfn_reptag/sales-order-view-tab-tags.phtml');
+        $this->setTemplate('wfn_tagger/sales-order-view-tab-tags.phtml');
     }
 
     /**

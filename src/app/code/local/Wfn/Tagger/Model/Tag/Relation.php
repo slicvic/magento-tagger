@@ -2,7 +2,7 @@
 /**
  * Tag relation model.
  */
-class Wfn_Reptag_Model_Tag_Relation extends Mage_Core_Model_Abstract
+class Wfn_Tagger_Model_Tag_Relation extends Mage_Core_Model_Abstract
 {
     /**
      * Allowed entity types.
@@ -15,6 +15,6 @@ class Wfn_Reptag_Model_Tag_Relation extends Mage_Core_Model_Abstract
      */
     protected function _construct()
     {
-        $this->_init('wfn_reptag/tag_relation');
+        $this->_init('wfn_tagger/tag_relation');
     }
 }

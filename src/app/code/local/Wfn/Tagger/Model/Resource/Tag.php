@@ -2,14 +2,14 @@
 /**
  * Tag resource model.
  */
-class Wfn_Reptag_Model_Resource_Tag extends Mage_Core_Model_Resource_Db_Abstract
+class Wfn_Tagger_Model_Resource_Tag extends Mage_Core_Model_Resource_Db_Abstract
 {
     /**
      * Define the table and primary key.
      */
     protected function _construct()
     {
-        $this->_init('wfn_reptag/tag', 'tag_id');
+        $this->_init('wfn_tagger/tag', 'tag_id');
     }
 
     /**
@@ -22,7 +22,7 @@ class Wfn_Reptag_Model_Resource_Tag extends Mage_Core_Model_Resource_Db_Abstract
         // Name field should be unique
         $this->_uniqueFields = [[
             'field' => 'name',
-            'title' => Mage::helper('wfn_reptag')->__('Tag')
+            'title' => Mage::helper('wfn_tagger')->__('Tag')
         ]];
 
         return $this;

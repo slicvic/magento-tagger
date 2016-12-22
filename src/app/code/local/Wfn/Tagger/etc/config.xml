@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * This is the main configuration file. Defines all models, blocks,
+ * helpers, etc.
+ */
+-->
+<config>
+    <modules>
+        <Wfn_Tagger>
+            <version>1.0.0.0</version>
+        </Wfn_Tagger>
+    </modules>
+    <adminhtml>
+        <layout>
+            <updates>
+                <wfn_tagger>
+                    <file>wfn_tagger.xml</file>
+                </wfn_tagger>
+            </updates>
+        </layout>
+    </adminhtml>
+    <global>
+        <blocks>
+            <wfn_tagger>
+                <class>Wfn_Tagger_Block</class>
+            </wfn_tagger>
+        </blocks>
+        <helpers>
+            <wfn_tagger>
+                <class>Wfn_Tagger_Helper</class>
+            </wfn_tagger>
+        </helpers>
+        <models>
+            <wfn_tagger>
+                <class>Wfn_Tagger_Model</class>
+                <resourceModel>wfn_tagger_resource</resourceModel>
+            </wfn_tagger>
+            <wfn_tagger_resource>
+                <class>Wfn_Tagger_Model_Resource</class>
+                <entities>
+                    <tag>
+                        <table>wfn_tagger_tag</table>
+                    </tag>
+                    <relation>
+                        <table>wfn_tagger_tag_relation</table>
+                    </relation>
+                </entities>
+            </wfn_tagger_resource>
+        </models>
+        <resources>
+            <wfn_tagger_setup>
+                <setup>
+                    <module>Wfn_Tagger</module>
+                </setup>
+            </wfn_tagger_setup>
+        </resources>
+    </global>
+</config>

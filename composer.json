@@ -1,17 +1,18 @@
 {
-    "name": "wfn/magento-module-rep-tag",
+    "name": "wfn/magento-module-tagger",
     "type": "magento-module",
+    "description": "Magento 1.9 plugin for tagging orders and customers.",
     "require": {
         "magento-hackathon/magento-composer-installer": "*"
     },
     "extra":{
         "map":[
-            ["src/app/etc/modules/Wfn_Reptag.xml", "app/etc/modules/Wfn_Reptag.xml"],
-            ["src/app/code/local/Wfn/Reptag/", "app/code/local/Wfn/Reptag"],
-            ["src/app/design/adminhtml/default/default/template/wfn_reptag/", "app/design/adminhtml/default/default/template/wfn_reptag"],
-            ["src/app/design/adminhtml/default/default/layout/wfn_reptag.xml", "app/design/adminhtml/default/default/layout/wfn_reptag.xml"],
-            ["src/js/wfn_reptag/", "js/wfn_reptag"],
-            ["src/skin/adminhtml/default/default/wfn_reptag/", "skin/adminhtml/default/default/wfn_reptag"]
+            ["src/app/etc/modules/Wfn_Tagger.xml", "app/etc/modules/Wfn_Tagger.xml"],
+            ["src/app/code/local/Wfn/Tagger/", "app/code/local/Wfn/Tagger"],
+            ["src/app/design/adminhtml/default/default/template/wfn_tagger/", "app/design/adminhtml/default/default/template/wfn_tagger"],
+            ["src/app/design/adminhtml/default/default/layout/wfn_tagger.xml", "app/design/adminhtml/default/default/layout/wfn_tagger.xml"],
+            ["src/js/wfn_tagger/", "js/wfn_tagger"],
+            ["src/skin/adminhtml/default/default/wfn_tagger/", "skin/adminhtml/default/default/wfn_tagger"]
         ]
     }
 }
