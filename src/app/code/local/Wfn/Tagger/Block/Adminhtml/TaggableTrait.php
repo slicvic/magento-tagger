@@ -12,7 +12,7 @@ trait Wfn_Tagger_Block_Adminhtml_TaggableTrait
     public $entity;
 
     /**
-     * Type of the entity to be tagged.
+     * Type of the entity.
      *
      * @var One of the Wfn_Tagger_Model_TagRelation::ENTITY_TYPE_* constants
      */
