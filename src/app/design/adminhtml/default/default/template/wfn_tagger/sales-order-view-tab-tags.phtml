@@ -1,32 +1,52 @@
-<input type="text" id="input-tags" name="" value="">
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-shipping-method">Tags</h4>
+    </div>
+    <fieldset>
+        <div>
+            <input
+                type="text"
+                id="tag-input"
+                value="<?php echo implode(',', $this->assignedTagIds) ?>">
+        </div>
+        <strong>Click to add previously used tags:</strong>
+        <div id="tag-buttons">
+            <?php foreach ($this->allTags as $tag): ?>
+                <button
+                    type="button"
+                    class="scalable"
+                    data-id="<?php echo $tag->getId() ?>"
+                    data-name="<?php echo $tag->getName() ?>"><?php echo $tag->getName() ?></button>
+            <?php endforeach; ?>
+        </div>
+    </fieldset>
+</div>
 <script type="text/javascript">
-var tagInput = jQuery('#input-tags');
-var tagInputSelectize;
+    (function($) {
+        var tagInput = $('#tag-input').selectize({
+            plugins: ['remove_button'],
+            delimiter: ',',
+            persist: false,
+            valueField: 'id',
+            labelField: 'name',
+            searchField: 'name',
+            options: <?php echo $this->allTagsJSON ?>,
+            create: function(input) {
+                return {
+                    id: input,
+                    name: input
+                }
+            }
+        });
 
-tagInput.selectize({
-    plugins: ['remove_button'],
-    delimiter: ',',
-    persist: false,
-    /*options: [
-        {value: 1, text: 'one'},
-        {value: 2, text: 'two'},
+        var tagInputSelectize = tagInput[0].selectize;
 
-    ],
-    items: [
-        1, 2
-    ],*/
-    create: function(input) {
-        return {
-            value: input,
-            text: input
-        }
-    }
-});
-
-tagInputSelectize = tagInput[0].selectize;
-tagInputSelectize.addOption({value: 1, text: 'one'});
-tagInputSelectize.addOption({value: 2, text: 'two'});
-tagInputSelectize.addItem(1);
-tagInputSelectize.addItem(2);
+        $('#tag-buttons').on('click', 'button', function() {
+            var tagId = $(this).data('id');
+            var tagName = $(this).data('name');
+            tagInputSelectize.addOption({id: tagId, name: tagName});
+            tagInputSelectize.addItem(tagId);
+        });
+    }(jQuery));
 
 </script>
