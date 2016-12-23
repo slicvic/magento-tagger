@@ -1,19 +1,19 @@
 <?php
 /**
- * Block class for order view "Tags" tab.
+ * Customer view tags tab block.
  */
-class Wfn_Tagger_Block_Adminhtml_OrderViewTabTags
+class Wfn_Tagger_Block_Adminhtml_CustomerViewTagsTab
     extends Mage_Adminhtml_Block_Sales_Order_Abstract
     implements Mage_Adminhtml_Block_Widget_Tab_Interface
 {
-    use Wfn_Tagger_Block_Adminhtml_TagsTrait;
+    use Wfn_Tagger_Block_Adminhtml_TaggableEntityTrait;
 
     /**
      * {@inheritdoc}
      */
     protected function initEntity()
     {
-        $this->entity = Mage::registry('current_order');
+        $this->entity = Mage::registry('current_customer');
     }
 
     /**
@@ -21,7 +21,7 @@ class Wfn_Tagger_Block_Adminhtml_OrderViewTabTags
      */
     protected function initEntityType()
     {
-        $this->entityType = Wfn_Tagger_Model_TagRelation::ENTITY_TYPE_ORDER;
+        $this->entityType = Wfn_Tagger_Model_TagRelation::ENTITY_TYPE_CUSTOMER;
     }
 
     /**
@@ -29,7 +29,7 @@ class Wfn_Tagger_Block_Adminhtml_OrderViewTabTags
      */
     protected function initTemplate()
     {
-        $this->setTemplate('wfn_tagger/order-view-tab-tags.phtml');
+        $this->setTemplate('wfn_tagger/tags-tab.phtml');
     }
 
     /**

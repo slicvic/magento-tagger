@@ -18,11 +18,15 @@ class Wfn_Tagger_Model_Resource_Tag_Collection
      * Filter collection to get tags for a specific entity.
      *
      * @param int $entityId
-     * @param string $entityType
+     * @param One of the Wfn_Tagger_Model_TagRelation::ENTITY_TYPE_* constants $entityType
      * @return $this
      */
     public function addEntityFilter($entityId, $entityType)
     {
+        if (!Wfn_Tagger_Model_TagRelation::isValidEntityType($entityType)) {
+            throw new InvalidArgumentException('$entityType must be one of the Wfn_Tagger_Model_TagRelation::ENTITY_TYPE_* constants');
+        }
+
         $this->getSelect()
              ->join(['tr' => Mage::getSingleton('core/resource')->getTableName('wfn_tagger/relation')],  'main_table.tag_id = tr.tag_id')
              ->where('tr.entity_id = ?', $entityId)

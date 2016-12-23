@@ -7,7 +7,7 @@
             <input
                 type="text"
                 id="tag-input"
-                value="<?php echo implode(',', $this->assignedTagIds) ?>">
+                value="<?php echo implode(',', array_keys($this->assignedTags)) ?>">
         </div>
         <strong>Click to add previously used tags:</strong>
         <div id="tag-buttons">
@@ -15,8 +15,8 @@
                 <button
                     type="button"
                     class="scalable"
-                    data-id="<?php echo $tag->getId() ?>"
-                    data-name="<?php echo $tag->getName() ?>"><?php echo $tag->getName() ?></button>
+                    data-id="<?php echo $tag['id'] ?>"
+                    data-name="<?php echo $tag['name'] ?>"><?php echo $tag['name'] ?></button>
             <?php endforeach; ?>
         </div>
     </fieldset>
@@ -30,7 +30,7 @@
             valueField: 'id',
             labelField: 'name',
             searchField: 'name',
-            options: <?php echo $this->allTagsJSON ?>,
+            options: <?php echo json_encode($this->allTags) ?>,
             create: function(input) {
                 return {
                     id: input,

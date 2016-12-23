@@ -1,19 +1,36 @@
 <?xml version="1.0"?>
 <layout>
-    <!-- Modify order view to add ability to tag order -->
+    <!-- Add ability to tag order -->
     <adminhtml_sales_order_view>
-        <!-- Add required js and css -->
+        <!-- Add required JS and CSS -->
         <reference name="head">
             <action method="addJs"><script>wfn_tagger/jquery/jquery-3.1.1.min.no-conflict.js</script></action>
             <action method="addJs"><script>wfn_tagger/selectize/selectize.min.js</script></action>
             <action method="addCss"><name>wfn_tagger/selectize/selectize.css</name></action>
         </reference>
-        <!-- Add a new tab for tags -->
+        <!-- Add "Tags" tab -->
         <reference name="sales_order_tabs">
             <action method="addTab">
                 <name>order_tab_wfn_tagger</name>
-                <block>wfn_tagger/adminhtml_orderViewTabTags</block>
+                <block>wfn_tagger/adminhtml_orderViewTagsTab</block>
             </action>
         </reference>
     </adminhtml_sales_order_view>
+
+    <!-- Add ability to tag customer -->
+    <adminhtml_customer_edit>
+        <!-- Add required JS and CSS -->
+        <reference name="head">
+            <action method="addJs"><script>wfn_tagger/jquery/jquery-3.1.1.min.no-conflict.js</script></action>
+            <action method="addJs"><script>wfn_tagger/selectize/selectize.min.js</script></action>
+            <action method="addCss"><name>wfn_tagger/selectize/selectize.css</name></action>
+        </reference>
+        <!-- Add "Tags" tab -->
+        <reference name="customer_edit_tabs">
+            <action method="addTab">
+                <name>order_tab_wfn_tagger</name>
+                <block>wfn_tagger/adminhtml_customerViewTagsTab</block>
+            </action>
+        </reference>
+    </adminhtml_customer_edit>
 </layout>

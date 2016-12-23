@@ -18,4 +18,18 @@ class Wfn_Tagger_Model_TagRelation extends Mage_Core_Model_Abstract
         // Define resource model
         $this->_init('wfn_tagger/tagRelation');
     }
+
+    /**
+     * Check if an entity type is valid.
+     *
+     * @param  string $entityType
+     * @return bool
+     */
+    public static function isValidEntityType($entityType)
+    {
+        return (in_array($entityType, array(
+            self::ENTITY_TYPE_ORDER,
+            self::ENTITY_TYPE_CUSTOMER,
+        )));
+    }
 }
