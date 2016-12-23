@@ -9,7 +9,7 @@ class Wfn_Tagger_Model_Resource_TagRelation extends Mage_Core_Model_Resource_Db_
      */
     protected function _construct()
     {
-        // Define table and primary key
+        // Define table and primary key (see config.xml for table config)
         $this->_init('wfn_tagger/relation', 'tag_relation_id');
     }
 

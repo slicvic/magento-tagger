@@ -1,6 +1,6 @@
 <?php
 /**
- * Customer view tags tab block.
+ * Customer view tags tab block class.
  */
 class Wfn_Tagger_Block_Adminhtml_CustomerViewTagsTab
     extends Mage_Adminhtml_Block_Sales_Order_Abstract
