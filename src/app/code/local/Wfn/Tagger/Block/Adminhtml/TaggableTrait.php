@@ -1,18 +1,18 @@
 <?php
 /**
- * Taggable entity block trait.
+ * Trait for tags block.
  */
-trait Wfn_Tagger_Block_Adminhtml_TaggableEntityTrait
+trait Wfn_Tagger_Block_Adminhtml_TaggableTrait
 {
     /**
-     * Entity to be tagged.
+     * An instance of the model class to be tagged.
      *
      * @var Mage_Sales_Model_Order|Mage_Customer_Model_Customer
      */
     public $entity;
 
     /**
-     * Type of entity to be tagged.
+     * Type of the entity to be tagged.
      *
      * @var One of the Wfn_Tagger_Model_TagRelation::ENTITY_TYPE_* constants
      */

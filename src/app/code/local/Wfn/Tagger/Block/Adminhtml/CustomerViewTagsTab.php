@@ -1,12 +1,12 @@
 <?php
 /**
- * Customer view tags tab block class.
+ * Customer view tags tab block.
  */
 class Wfn_Tagger_Block_Adminhtml_CustomerViewTagsTab
     extends Mage_Adminhtml_Block_Sales_Order_Abstract
     implements Mage_Adminhtml_Block_Widget_Tab_Interface
 {
-    use Wfn_Tagger_Block_Adminhtml_TaggableEntityTrait;
+    use Wfn_Tagger_Block_Adminhtml_TaggableTrait;
 
     /**
      * {@inheritdoc}

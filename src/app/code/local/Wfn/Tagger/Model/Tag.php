@@ -1,6 +1,6 @@
 <?php
 /**
- * Tag model class.
+ * Tag model.
  */
 class Wfn_Tagger_Model_Tag extends Mage_Core_Model_Abstract
 {

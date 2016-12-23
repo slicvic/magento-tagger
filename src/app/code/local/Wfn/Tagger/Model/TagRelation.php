@@ -1,6 +1,6 @@
 <?php
 /**
- * Tag relation model class.
+ * Tag relation model.
  */
 class Wfn_Tagger_Model_TagRelation extends Mage_Core_Model_Abstract
 {
