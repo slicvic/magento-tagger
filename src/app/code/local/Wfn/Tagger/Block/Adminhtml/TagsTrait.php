@@ -1,6 +1,6 @@
 <?php
 /**
- * Trait for tag blocks.
+ * Tag blocks trait.
  */
 trait Wfn_Tagger_Block_Adminhtml_TagsTrait
 {
@@ -14,7 +14,7 @@ trait Wfn_Tagger_Block_Adminhtml_TagsTrait
     /**
      * Type of entity to be tagged.
      *
-     * @var Wfn_Tagger_Model_Tag_Relation::ENTITY_TYPE_*
+     * @var Wfn_Tagger_Model_TagRelation::ENTITY_TYPE_*
      */
     protected $entityType;
 
@@ -72,7 +72,7 @@ trait Wfn_Tagger_Block_Adminhtml_TagsTrait
      * Initialize $this->_template.
      */
     abstract protected function initTemplate();
-    
+
     /**
      * Initialize tags.
      */

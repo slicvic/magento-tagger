@@ -21,7 +21,7 @@ class Wfn_Tagger_Block_Adminhtml_OrderViewTabTags
      */
     protected function initEntityType()
     {
-        $this->entityType = Wfn_Tagger_Model_Tag_Relation::ENTITY_TYPE_ORDER;
+        $this->entityType = Wfn_Tagger_Model_TagRelation::ENTITY_TYPE_ORDER;
     }
 
     /**

@@ -2,10 +2,10 @@
 /**
  * Tag relation model class.
  */
-class Wfn_Tagger_Model_Tag_Relation extends Mage_Core_Model_Abstract
+class Wfn_Tagger_Model_TagRelation extends Mage_Core_Model_Abstract
 {
     /**
-     * Allowed values for entity type field.
+     * Allowed values for entity type column.
      */
     const ENTITY_TYPE_ORDER    = 'order';
     const ENTITY_TYPE_CUSTOMER = 'customer';
@@ -16,6 +16,6 @@ class Wfn_Tagger_Model_Tag_Relation extends Mage_Core_Model_Abstract
     protected function _construct()
     {
         // Define resource model
-        $this->_init('wfn_tagger/tag_relation');
-    }    
+        $this->_init('wfn_tagger/tagRelation');
+    }
 }
