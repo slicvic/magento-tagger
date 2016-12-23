@@ -11,6 +11,17 @@
             <version>1.0.0.0</version>
         </Wfn_Tagger>
     </modules>
+    <admin>
+        <routers>
+            <wfn_tagger>
+                <use>admin</use>
+                <args>
+                    <module>Wfn_Tagger_Adminhtml</module>
+                    <frontName>wfntagger</frontName>
+                </args>
+            </wfn_tagger>
+        </routers>
+    </admin>
     <adminhtml>
         <layout>
             <updates>

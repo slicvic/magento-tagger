@@ -1,17 +1,22 @@
 <?php
 /**
- * Order view tags tab class.
+ * Trait for tag blocks.
  */
-class Wfn_Tagger_Block_Adminhtml_Sales_Order_View_Tab_Tags
-    extends Mage_Adminhtml_Block_Sales_Order_Abstract
-    implements Mage_Adminhtml_Block_Widget_Tab_Interface
+trait Wfn_Tagger_Block_Adminhtml_TagsTrait
 {
     /**
-     * Current order model.
+     * Entity to be tagged.
      *
-     * @var Mage_Sales_Model_Order
+     * @var Mage_Sales_Model_Order|Mage_Customer_Model_Customer
      */
-    protected $order;
+    protected $entity;
+
+    /**
+     * Type of entity to be tagged.
+     *
+     * @var Wfn_Tagger_Model_Tag_Relation::ENTITY_TYPE_*
+     */
+    protected $entityType;
 
     /**
      * All available tags.
@@ -28,14 +33,14 @@ class Wfn_Tagger_Block_Adminhtml_Sales_Order_View_Tab_Tags
     public $allTagsJSON;
 
     /**
-     * Tags assigned to order.
+     * Tags assigned to entity.
      *
      * @var Wfn_Tagger_Model_Resource_Tag_Collection
      */
     public $assignedTags;
 
     /**
-     * Tag IDs assigned to order.
+     * Tag IDs assigned to entity.
      *
      * @var array
      */
@@ -47,19 +52,38 @@ class Wfn_Tagger_Block_Adminhtml_Sales_Order_View_Tab_Tags
     protected function _construct()
     {
         parent::_construct();
+        $this->initTemplate();
+        $this->initEntity();
+        $this->initEntityType();
+        $this->initTags();
+    }
 
-        // Define template file
-        $this->setTemplate('wfn_tagger/sales-order-view-tab-tags.phtml');
+    /**
+     * Initialize $this->entity.
+     */
+    abstract protected function initEntity();
 
-        // Set current order
-        $this->order = Mage::registry('current_order');
+    /**
+    * Initialize $this->entityType.
+     */
+    abstract protected function initEntityType();
 
+    /**
+     * Initialize $this->_template.
+     */
+    abstract protected function initTemplate();
+    
+    /**
+     * Initialize tags.
+     */
+    public function initTags()
+    {
         // Retrieve all tags
         $this->allTags = Mage::getModel('wfn_tagger/tag')
             ->getCollection()
             ->addFieldToSelect(['tag_id', 'name']);
 
-        // Convert tags to JSON string
+        // Convert to JSON string
         $this->allTagsJSON = [];
         foreach ($this->allTags as $tag) {
             $this->allTagsJSON[] = [
@@ -72,45 +96,13 @@ class Wfn_Tagger_Block_Adminhtml_Sales_Order_View_Tab_Tags
         // Retrieve assigned tags
         $this->assignedTags = Mage::getModel('wfn_tagger/tag')
             ->getCollection()
-            ->addOrderFilter($this->order->getId())
+            ->addEntityFilter($this->entity->getId(), $this->entityType)
             ->addFieldToSelect(['tag_id', 'name']);
 
-        // Extract assigned tag IDs
+        // Extract tag IDs
         $this->assignedTagIds = [];
         foreach ($this->assignedTags as $tag) {
             $this->assignedTagIds[] = $tag->getId();
         }
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getTabLabel()
-    {
-        return $this->__('Tags');
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getTabTitle()
-    {
-        return $this->__('Tags');
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function canShowTab()
-    {
-        return true;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function isHidden()
-    {
-        return false;
     }
 }

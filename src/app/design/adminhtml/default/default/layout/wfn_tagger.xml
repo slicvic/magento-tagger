@@ -12,7 +12,7 @@
         <reference name="sales_order_tabs">
             <action method="addTab">
                 <name>order_tab_wfn_tagger</name>
-                <block>wfn_tagger/adminhtml_sales_order_view_tab_tags</block>
+                <block>wfn_tagger/adminhtml_orderViewTabTags</block>
             </action>
         </reference>
     </adminhtml_sales_order_view>
