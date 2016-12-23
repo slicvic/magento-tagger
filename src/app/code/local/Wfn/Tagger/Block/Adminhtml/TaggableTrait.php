@@ -5,14 +5,14 @@
 trait Wfn_Tagger_Block_Adminhtml_TaggableTrait
 {
     /**
-     * An instance of the model class to be tagged.
+     * ID of the entity for tagging.
      *
-     * @var Mage_Sales_Model_Order|Mage_Customer_Model_Customer
+     * @var int
      */
-    public $entity;
+    public $entityId;
 
     /**
-     * Type of the entity.
+     * Type of the entity for tagging.
      *
      * @var One of the Wfn_Tagger_Model_TagRelation::ENTITY_TYPE_* constants
      */
@@ -39,16 +39,16 @@ trait Wfn_Tagger_Block_Adminhtml_TaggableTrait
     {
         parent::_construct();
         $this->initTemplate();
-        $this->initEntity();
+        $this->initEntityId();
         $this->initEntityType();
         $this->initAllTags();
         $this->initAssignedTags();
     }
 
     /**
-     * Initialize $this->entity.
+     * Initialize $this->entityId.
      */
-    abstract protected function initEntity();
+    abstract protected function initEntityId();
 
     /**
      * Initialize $this->entityType.
@@ -88,7 +88,7 @@ trait Wfn_Tagger_Block_Adminhtml_TaggableTrait
 
         $tags = Mage::getModel('wfn_tagger/tag')
                     ->getCollection()
-                    ->addEntityFilter($this->entity->getId(), $this->entityType)
+                    ->addEntityFilter($this->entityId, $this->entityType)
                     ->addFieldToSelect(['tag_id', 'name']);
 
         foreach ($tags as $tag) {

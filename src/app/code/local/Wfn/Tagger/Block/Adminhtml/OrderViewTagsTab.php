@@ -11,9 +11,9 @@ class Wfn_Tagger_Block_Adminhtml_OrderViewTagsTab
     /**
      * {@inheritdoc}
      */
-    protected function initEntity()
+    protected function initEntityId()
     {
-        $this->entity = Mage::registry('current_order');
+        $this->entityId = Mage::registry('current_order')->getId();
     }
 
     /**

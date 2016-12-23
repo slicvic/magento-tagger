@@ -11,9 +11,9 @@ class Wfn_Tagger_Block_Adminhtml_CustomerViewTagsTab
     /**
      * {@inheritdoc}
      */
-    protected function initEntity()
+    protected function initEntityId()
     {
-        $this->entity = Mage::registry('current_customer');
+        $this->entityId = Mage::registry('current_customer')->getId();
     }
 
     /**

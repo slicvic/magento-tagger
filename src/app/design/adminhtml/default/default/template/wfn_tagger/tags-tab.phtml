@@ -30,8 +30,9 @@
             valueField: 'id',
             labelField: 'name',
             searchField: 'name',
-            options: <?php echo json_encode($this->allTags) ?>,
+            options: <?php echo json_encode(array_values($this->assignedTags)) ?>,
             create: function(input) {
+                alert(2);
                 return {
                     id: input,
                     name: input
