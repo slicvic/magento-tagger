@@ -29,7 +29,9 @@ $table = $installer->getConnection()
         'unsigned' => true,
         'nullable' => false,
         ], 'Admin user ID who added record')
-    ->addColumn('created_at', Varien_Db_Ddl_Table::TYPE_TIMESTAMP)
+    ->addColumn('created_at', Varien_Db_Ddl_Table::TYPE_TIMESTAMP, null, [
+        'default' => Varien_Db_Ddl_Table::TIMESTAMP_INIT
+        ])
     ->addIndex( // Name field should be unique
         $installer->getIdxName('wfn_tagger/tag', ['name'], Varien_Db_Adapter_Interface::INDEX_TYPE_UNIQUE),
         ['name'],
@@ -65,7 +67,9 @@ $table = $installer->getConnection()
         'unsigned' => true,
         'nullable' => false,
         ], 'Admin user ID who added record')
-    ->addColumn('created_at', Varien_Db_Ddl_Table::TYPE_TIMESTAMP)
+    ->addColumn('created_at', Varien_Db_Ddl_Table::TYPE_TIMESTAMP, null, [
+        'default' => Varien_Db_Ddl_Table::TIMESTAMP_INIT
+        ])
     ->addIndex($installer->getIdxName('wfn_tagger/relation', ['tag_id']), ['tag_id'])
     ->addIndex($installer->getIdxName('wfn_tagger/relation', ['entity_id']), ['entity_id'])
     ->addIndex($installer->getIdxName('wfn_tagger/relation', ['entity_type']), ['entity_type'])
