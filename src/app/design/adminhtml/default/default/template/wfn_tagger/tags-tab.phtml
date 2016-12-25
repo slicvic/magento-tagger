@@ -1,3 +1,5 @@
+<?php $assignedTagNames = []; ?>
+<?php foreach ($this->assignedTags as $tag) { $assignedTagNames[] = $tag['name']; } ?>
 <div class="entry-edit">
     <div class="entry-edit-head">
         <h4 class="icon-head head-shipping-method">Tags</h4>
@@ -7,7 +9,7 @@
             <input
                 type="text"
                 id="tag-input"
-                value="<?php echo implode(',', array_keys($this->assignedTags)) ?>">
+                value="<?php echo implode(',', $assignedTagNames) ?>">
         </div>
         <strong>Click to add previously used tags:</strong>
         <div id="tag-buttons">
@@ -23,31 +25,62 @@
 </div>
 <script type="text/javascript">
     (function($) {
-        var tagInput = $('#tag-input').selectize({
-            plugins: ['remove_button'],
-            delimiter: ',',
-            persist: false,
-            valueField: 'id',
-            labelField: 'name',
-            searchField: 'name',
-            options: <?php echo json_encode(array_values($this->assignedTags)) ?>,
-            create: function(input) {
-                alert(2);
-                return {
-                    id: input,
-                    name: input
+        $(function() {
+            var isLoading = false;
+            var loadingMask = $('#loading-mask');
+            var tagInputSelectize;
+            var tagInput = $('#tag-input').selectize({
+                plugins: ['remove_button'],
+                delimiter: ',',
+                persist: false,
+                valueField: 'id',
+                labelField: 'name',
+                searchField: 'name',
+                create: function(input, callback) {
+                    if (isLoading) {
+                        return;
+                    }
+
+                    $.ajax({
+                        url: '<?php echo $this->getUrl('wfn_tagger/ajax_tags/addtag') ?>',
+                        method: 'post',
+                        dataType: 'json',
+                        beforeSend: function() {
+                            isLoading = true;
+                            loadingMask.show();
+                        },
+                        data: {
+                            form_key: '<?php echo Mage::getSingleton('core/session')->getFormKey() ?>',
+                            tag: {
+                                name: input,
+                                assigned_entity_id: '<?php echo $this->entityId ?>',
+                                assigned_entity_type: '<?php echo $this->entityType ?>'
+                            }
+                        }
+                    }).done(function(response) {
+                        if (response.success) {
+                            callback({
+                                id: input,
+                                name: input
+                            });
+                        } else {
+                            alert(response.error_message);
+                        }
+                    }).fail(function() {
+                        alert('Whoops! Something went wrong. Please try again!');
+                    }).always(function() {
+                        isLoading = false;
+                        loadingMask.hide();
+                    });
                 }
-            }
-        });
+            });
 
-        var tagInputSelectize = tagInput[0].selectize;
+            tagInputSelectize = tagInput[0].selectize;
 
-        $('#tag-buttons').on('click', 'button', function() {
-            var tagId = $(this).data('id');
-            var tagName = $(this).data('name');
-            tagInputSelectize.addOption({id: tagId, name: tagName});
-            tagInputSelectize.addItem(tagId);
+            $('#tag-buttons').on('click', 'button', function() {
+                var tagName = $(this).data('name');
+                tagInputSelectize.createItem(tagName);
+            });
         });
     }(jQuery));
-
 </script>
