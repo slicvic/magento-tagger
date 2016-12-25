@@ -21,7 +21,7 @@ class Wfn_Tagger_Model_Resource_TagRelation extends Mage_Core_Model_Resource_Db_
         // Tag ID, entity ID and entity type combination should be unique
         $this->_uniqueFields = [[
             'field' => ['tag_id', 'entity_id', 'entity_type'],
-            'title' => Mage::helper('wfn_tagger')->__('Tag ID, Entity ID and Entity Type combination should be unique')
+            'title' => Mage::helper('wfn_tagger')->__('Tag ID, Entity ID and Entity Type combination')
         ]];
 
         return $this;
