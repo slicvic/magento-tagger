@@ -28,9 +28,9 @@ class Wfn_Tagger_Model_Resource_Tag_Collection
         }
 
         $this->getSelect()
-             ->join(['tr' => Mage::getSingleton('core/resource')->getTableName('wfn_tagger/relation')],  'main_table.tag_id = tr.tag_id')
-             ->where('tr.entity_id = ?', $entityId)
-             ->where('tr.entity_type = ?', $entityType);
+            ->join(['tr' => Mage::getSingleton('core/resource')->getTableName('wfn_tagger/relation')], 'main_table.tag_id = tr.tag_id')
+            ->where('tr.entity_id = ?', $entityId)
+            ->where('tr.entity_type = ?', $entityType);
 
         return $this;
     }
