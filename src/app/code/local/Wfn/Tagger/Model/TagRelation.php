@@ -20,6 +20,44 @@ class Wfn_Tagger_Model_TagRelation extends Mage_Core_Model_Abstract
     }
 
     /**
+     * {@inheritdoc}
+     */
+    protected function _beforeSave()
+    {
+        $validationResult = $this->validate();
+
+        if ($validationResult !== true) {
+            throw new Wfn_Tagger_Model_Validation_Exception(implode('', $validationResult));
+        }
+
+        parent::_beforeSave();
+    }
+
+    /**
+     * Validate model data.
+     *
+     * @return true|array TRUE on success, array of errors on failure
+     */
+    public function validate()
+    {
+        $errors = [];
+
+        if (!Zend_Validate::is($this->entity_id, 'Digits')) {
+            $errors[] = Mage::helper('wfn_tagger')->__('The entity id must only contain digits.');
+        }
+
+        if (!static::isValidEntityType($this->entity_type)) {
+            $errors[] = Mage::helper('wfn_tagger')->__('The entity type is invalid.');
+        }
+
+        if (empty($errors)) {
+            return true;
+        }
+
+        return $errors;
+    }
+
+    /**
      * Check if an entity type is valid.
      *
      * @param  string $entityType
@@ -28,32 +66,8 @@ class Wfn_Tagger_Model_TagRelation extends Mage_Core_Model_Abstract
     public static function isValidEntityType($entityType)
     {
         return (in_array($entityType, array(
-            self::ENTITY_TYPE_ORDER,
-            self::ENTITY_TYPE_CUSTOMER,
+            static::ENTITY_TYPE_ORDER,
+            static::ENTITY_TYPE_CUSTOMER,
         )));
-    }
-
-    /**
-     * Validate model data.
-     * 
-     * @return true|array TRUE on success, array of errors on failure
-     */
-    public function validate()
-    {
-        $errors = [];
-        
-        if (!Zend_Validate::is($this->entity_id, 'Digits')) {
-            $errors[] = Mage::helper('wfn_tagger')->__('The entity id must only contain digits');
-        }
-            
-        if (!self::isValidEntityType($this->entity_type)) {
-            $errors[] = Mage::helper('wfn_tagger')->__('The entity type is invalid');
-        }
-        
-        if (empty($errors)) {
-            return true;
-        }
-        
-        return $errors;
     }
 }
