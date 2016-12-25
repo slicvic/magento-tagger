@@ -53,28 +53,7 @@ class Wfn_Tagger_Model_Tag extends Mage_Core_Model_Abstract
     }
 
     /**
-     * Associate tag with a specific entity.
-     *
-     * @param int $entityId
-     * @param One of the Wfn_Tagger_Model_TagRelation::ENTITY_TYPE_* constants $entityType
-     * @param int $createdUid
-     */
-    public function addRelation($entityId, $entityType, $createdUid)
-    {
-        $relation = Mage::getModel('wfn_tagger/tagRelation');
-
-        $relation->setData([
-            'tag_id' => $this->getId(),
-            'entity_id' => $entityId,
-            'entity_type' => $entityType,
-            'created_uid' => $createdUid
-        ]);
-
-        $relation->save();
-    }
-
-    /**
-     * Load by tag name or create a new instance.
+     * Load a tag by name.
      *
      * @param string $name
      * @return Wfn_Tagger_Model_Tag
@@ -98,31 +77,31 @@ class Wfn_Tagger_Model_Tag extends Mage_Core_Model_Abstract
      */
     public static function createTagAndAssignEntity($tagName, $entityId, $entityType, $createdUid)
     {
+        $tagResource = Mage::getResourceModel('wfn_tagger/tag');
+
         try {
-            $this->getResource()->beginTransaction();
+            $tagResource->beginTransaction();
 
             // Check if tag already exists, and if not, create it
             $tag = static::loadByName($tagName);
             if (!$tag->getId()) {
-                $tag->setData([
-                    'name' => trim($tagName),
-                    'created_uid' => $createdUid,
-                ])->save();
+                $tag->name = trim($tagName);
+                $tag->created_uid = $createdUid;
+                $tag->save();
             }
 
             // Assign entity to tag
             $tagRelation = Mage::getModel('wfn_tagger/tagRelation');
-            $tagRelation->setData([
-                'tag_id' => $tag->getId(),
-                'entity_id' => $entityId,
-                'entity_type' => $entityType,
-                'created_uid' => $createdUid
-            ])->save();
+            $tagRelation->tag_id = $tag->getId();
+            $tagRelation->entity_id = $entityId;
+            $tagRelation->entity_type = $entityType;
+            $tagRelation->created_uid = $createdUid;
+            $tagRelation->save();
 
-            $this->getResource()->commit();
+            $tagResource->commit();
 
         } catch (Exception $e) {
-            $this->getResource()->rollback();
+            $tagResource->rollback();
             throw $e;
         }
     }
