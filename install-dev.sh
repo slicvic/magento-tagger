@@ -1,4 +1,8 @@
 #!/bin/bash
+#
+# Module install script for local dev.
+#
+#
 destBaseDir=/Users/victor/Code/slicvic/magento19
 
 rm $destBaseDir/app/etc/modules/Wfn_Tagger.xml
