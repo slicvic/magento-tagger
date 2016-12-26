@@ -5,7 +5,7 @@
 class Wfn_Tagger_Adminhtml_Ajax_TagsController extends Mage_Adminhtml_Controller_Action
 {
     /**
-     * Proccess request to tag an entity.
+     * Proccess a request to tag an entity.
      *
      * @return JSON string
      */
@@ -13,9 +13,7 @@ class Wfn_Tagger_Adminhtml_Ajax_TagsController extends Mage_Adminhtml_Controller
     {
         $request = $this->getRequest();
         $params = $request->getParams();
-        $response = [
-            'success' => false
-        ];
+        $response = ['success' => false];
 
         if (
             empty($params['tag']['name'])
@@ -48,11 +46,44 @@ class Wfn_Tagger_Adminhtml_Ajax_TagsController extends Mage_Adminhtml_Controller
     }
 
     /**
-     * Proccess request to untag an entity.
+     * Proccess a request to untag an entity.
      */
     public function removeTagAction()
     {
-        //
+        $request = $this->getRequest();
+        $params = $request->getParams();
+        $response = ['success' => false];
+
+        if (
+            empty($params['tag']['name'])
+            || empty($params['tag']['assigned_entity_id'])
+            || empty($params['tag']['assigned_entity_type'])
+        ) {
+            $response['error_message'] = $this->__('Invalid tag data.');
+            return $this->sendJsonResponse($response);
+        }
+
+        try {
+            $tag = Mage::getModel('wfn_tagger/tag')->loadByName($params['tag']['name']);
+            if (!$tag->getId()) {
+                $response['error_message'] = $this->__('Tag not found.');
+                return $this->sendJsonResponse($response);
+            }
+
+            Wfn_Tagger_Model_Resource_TagRelation::deleteByTagIdEntityIdAndEntityType(
+                $tag->getId(),
+                $params['tag']['assigned_entity_id'],
+                $params['tag']['assigned_entity_type']
+            );
+
+            $response['success'] = true;
+
+        } catch (Exception $e) {
+            Mage::log($e->getMessage());
+            $response['error_message'] = $this->__('Whoops! Something went wrong. Please try again!');
+        }
+
+        return $this->sendJsonResponse($response);
     }
 
     /**

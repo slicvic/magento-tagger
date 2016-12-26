@@ -26,4 +26,24 @@ class Wfn_Tagger_Model_Resource_TagRelation extends Mage_Core_Model_Resource_Db_
 
         return $this;
     }
+
+    /**
+     * Delete a relation by tag ID, entity ID and entity type combination.
+     *
+     * @param int $tagId
+     * @param int $entityId
+     * @param One of the Wfn_Tagger_Model_TagRelation::ENTITY_TYPE_* constants $entityType
+     * @return int
+     */
+    public static function deleteByTagIdEntityIdAndEntityType($tagId, $entityId, $entityType)
+    {
+        $coreResource = Mage::getSingleton('core/resource');
+        $connection = $coreResource->getConnection('core_read');
+
+        return $connection->delete($coreResource->getTableName('wfn_tagger/relation'), [
+                'tag_id = ?' => $tagId,
+                'entity_id = ?' => $entityId,
+                'entity_type = ?' => $entityType,
+            ]);
+    }
 }

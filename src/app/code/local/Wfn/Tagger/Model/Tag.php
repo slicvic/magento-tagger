@@ -69,19 +69,18 @@ class Wfn_Tagger_Model_Tag extends Mage_Core_Model_Abstract
     /**
      * Create a tag and associate it with an entity.
      *
-     * @param  string $tagName
-     * @param  int $entityId
-     * @param  One of the Wfn_Tagger_Model_TagRelation::ENTITY_TYPE_* constants $entityType
-     * @param  int $createdUid
+     * @param string $tagName
+     * @param int $entityId
+     * @param One of the Wfn_Tagger_Model_TagRelation::ENTITY_TYPE_* constants $entityType
+     * @param int $createdUid
      * @throws Exception
      */
     public static function createTagAndAssignEntity($tagName, $entityId, $entityType, $createdUid)
     {
         $tagResource = Mage::getResourceModel('wfn_tagger/tag');
+        $tagResource->beginTransaction();
 
         try {
-            $tagResource->beginTransaction();
-
             // Check if tag already exists, and if not, create it
             $tag = static::loadByName($tagName);
             if (!$tag->getId()) {

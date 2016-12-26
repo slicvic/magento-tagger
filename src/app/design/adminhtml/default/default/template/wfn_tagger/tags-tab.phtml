@@ -72,6 +72,48 @@
                         isLoading = false;
                         loadingMask.hide();
                     });
+                },
+                onDelete: function(values) {
+                    if (!values || values.length !== 1) {
+                        return false;
+                    }
+
+                    if (isLoading) {
+                        return false;
+                    }
+
+                    var value = values[0];
+
+                    $.ajax({
+                        url: '<?php echo $this->getUrl('wfn_tagger/ajax_tags/removetag') ?>',
+                        method: 'post',
+                        dataType: 'json',
+                        beforeSend: function() {
+                            isLoading = true;
+                            loadingMask.show();
+                        },
+                        data: {
+                            form_key: '<?php echo Mage::getSingleton('core/session')->getFormKey() ?>',
+                            tag: {
+                                name: value,
+                                assigned_entity_id: '<?php echo $this->entityId ?>',
+                                assigned_entity_type: '<?php echo $this->entityType ?>'
+                            }
+                        }
+                    }).done(function(response) {
+                        if (response.success) {
+                            tagInputSelectize.removeItem(value, true);
+                        } else {
+                            alert(response.error_message);
+                        }
+                    }).fail(function() {
+                        alert('Whoops! Something went wrong. Please try again!');
+                    }).always(function() {
+                        isLoading = false;
+                        loadingMask.hide();
+                    });
+
+                    return false;
                 }
             });
 
