@@ -22,7 +22,7 @@ $table = $installer->getConnection()
         'unsigned' => true,
         'nullable' => false,
         ])
-    ->addColumn('name', Varien_Db_Ddl_Table::TYPE_VARCHAR, 255, [
+    ->addColumn('name', Varien_Db_Ddl_Table::TYPE_VARCHAR, 70, [
         'nullable' => false,
         ])
     ->addColumn('created_uid', Varien_Db_Ddl_Table::TYPE_INTEGER, null, [
