@@ -27,9 +27,14 @@
     (function($) {
         $(function() {
             var isLoading = false;
-            var loadingMask = $('#loading-mask');
-            var selectizeTagInput;
-            var tagInput = $('#tag-input').selectize({
+            var selectize;
+            var elements = {
+                loadingMask: $('#loading-mask'),
+                tagInput: $('#tag-input'),
+                tagButtons: $('#tag-buttons')
+            };
+
+            elements.tagInput.selectize({
                 plugins: ['remove_button'],
                 delimiter: ',',
                 persist: false,
@@ -42,7 +47,7 @@
                     }
 
                     isLoading = true;
-                    loadingMask.show();
+                    elements.loadingMask.show();
 
                     $.ajax({
                         url: '<?php echo $this->getUrl('wfn_tagger/ajax_tags/tag') ?>',
@@ -69,7 +74,7 @@
                         alert('Whoops! Something went wrong. Please try again!');
                     }).always(function() {
                         isLoading = false;
-                        loadingMask.hide();
+                        elements.loadingMask.hide();
                     });
                 },
                 onDelete: function(values) {
@@ -83,7 +88,7 @@
 
                     var value = values[0];
                     isLoading = true;
-                    loadingMask.show();
+                    elements.loadingMask.show();
 
                     $.ajax({
                         url: '<?php echo $this->getUrl('wfn_tagger/ajax_tags/untag') ?>',
@@ -99,7 +104,7 @@
                         }
                     }).done(function(response) {
                         if (response.success) {
-                            selectizeTagInput.removeItem(value);
+                            selectize.removeItem(value);
                         } else {
                             alert(response.error_message);
                         }
@@ -107,18 +112,18 @@
                         alert('Whoops! Something went wrong. Please try again!');
                     }).always(function() {
                         isLoading = false;
-                        loadingMask.hide();
+                        elements.loadingMask.hide();
                     });
 
                     return false;
                 }
             });
 
-            selectizeTagInput = tagInput[0].selectize;
+            selectize = elements.tagInput[0].selectize;
 
-            $('#tag-buttons').on('click', 'button', function() {
+            elements.tagButtons.on('click', 'button', function() {
                 var tagName = $(this).data('name');
-                selectizeTagInput.createItem(tagName);
+                selectize.createItem(tagName);
             });
         });
     }(jQuery));
