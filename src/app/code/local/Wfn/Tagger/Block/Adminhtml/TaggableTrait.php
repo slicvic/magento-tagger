@@ -21,14 +21,14 @@ trait Wfn_Tagger_Block_Adminhtml_TaggableTrait
     /**
      * List of all tags.
      *
-     * @var [][] In the form of: [['id' => 'Tag ID', 'name' => 'Tag Name'], ...]
+     * @var Wfn_Tagger_Model_Resource_Tag_Collection
      */
     public $allTags;
 
     /**
      * List of tags assigned to entity.
      *
-     * @var [][] In the form of: [['id' => 'Tag ID', 'name' => 'Tag Name'], ...]
+     * @var Wfn_Tagger_Model_Resource_Tag_Collection
      */
     public $assignedTags;
 
@@ -65,18 +65,9 @@ trait Wfn_Tagger_Block_Adminhtml_TaggableTrait
      */
     protected function initAllTags()
     {
-        $this->allTags = [];
-
-        $tags = Mage::getModel('wfn_tagger/tag')
-                    ->getCollection()
-                    ->addFieldToSelect(['tag_id', 'name']);
-
-        foreach ($tags as $tag) {
-            $this->allTags[] = [
-                'id' => $tag->getId(),
-                'name' => $tag->getName()
-            ];
-        }
+        $this->allTags = Mage::getModel('wfn_tagger/tag')
+            ->getCollection()
+            ->addFieldToSelect(['tag_id', 'name']);
     }
 
     /**
@@ -84,18 +75,9 @@ trait Wfn_Tagger_Block_Adminhtml_TaggableTrait
      */
     protected function initAssignedTags()
     {
-        $this->assignedTags = [];
-
-        $tags = Mage::getModel('wfn_tagger/tag')
-                    ->getCollection()
-                    ->addEntityFilter($this->entityId, $this->entityType)
-                    ->addFieldToSelect(['tag_id', 'name']);
-
-        foreach ($tags as $tag) {
-            $this->assignedTags[$tag->getId()] = [
-                'id' => $tag->getId(),
-                'name' => $tag->getName()
-            ];
-        }
+        $this->assignedTags = Mage::getModel('wfn_tagger/tag')
+            ->getCollection()
+            ->addEntityFilter($this->entityId, $this->entityType)
+            ->addFieldToSelect(['tag_id', 'name']);
     }
 }

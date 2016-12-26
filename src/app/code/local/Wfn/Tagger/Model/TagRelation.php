@@ -36,7 +36,7 @@ class Wfn_Tagger_Model_TagRelation extends Mage_Core_Model_Abstract
     /**
      * Validate model data.
      *
-     * @return true|array TRUE on success, array of errors on failure
+     * @return true|array True on success, array of errors on failure
      */
     public function validate()
     {
