@@ -25,7 +25,7 @@ class Wfn_Tagger_Adminhtml_Ajax_TagsController extends Mage_Adminhtml_Controller
         }
 
         try {
-            Wfn_Tagger_Model_Tag::createTagAndAssignEntity(
+            Wfn_Tagger_Model_Resource_Tag::createTagAndAssignEntity(
                 $params['tag']['name'],
                 $params['tag']['assigned_entity_id'],
                 $params['tag']['assigned_entity_type'],
@@ -64,7 +64,7 @@ class Wfn_Tagger_Adminhtml_Ajax_TagsController extends Mage_Adminhtml_Controller
         }
 
         try {
-            $tag = Mage::getModel('wfn_tagger/tag')->loadByName($params['tag']['name']);
+            $tag = Wfn_Tagger_Model_Resource_Tag::loadByName($params['tag']['name']);
             if (!$tag->getId()) {
                 $response['error_message'] = $this->__('Tag not found.');
                 return $this->sendJsonResponse($response);
