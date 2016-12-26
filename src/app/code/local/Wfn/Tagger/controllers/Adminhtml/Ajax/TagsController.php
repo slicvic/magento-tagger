@@ -5,11 +5,11 @@
 class Wfn_Tagger_Adminhtml_Ajax_TagsController extends Mage_Adminhtml_Controller_Action
 {
     /**
-     * Proccess a request to tag an entity.
+     * Tag an entity.
      *
      * @return JSON string
      */
-    public function addTagAction()
+    public function tagAction()
     {
         $request = $this->getRequest();
         $params = $request->getParams();
@@ -20,7 +20,7 @@ class Wfn_Tagger_Adminhtml_Ajax_TagsController extends Mage_Adminhtml_Controller
             || empty($params['tag']['assigned_entity_id'])
             || empty($params['tag']['assigned_entity_type'])
         ) {
-            $response['error_message'] = $this->__('Invalid tag data.');
+            $response['error_message'] = $this->__('Invalid tag parameters.');
             return $this->sendJsonResponse($response);
         }
 
@@ -46,9 +46,9 @@ class Wfn_Tagger_Adminhtml_Ajax_TagsController extends Mage_Adminhtml_Controller
     }
 
     /**
-     * Proccess a request to untag an entity.
+     * Untag an entity.
      */
-    public function removeTagAction()
+    public function untagAction()
     {
         $request = $this->getRequest();
         $params = $request->getParams();
@@ -59,7 +59,7 @@ class Wfn_Tagger_Adminhtml_Ajax_TagsController extends Mage_Adminhtml_Controller
             || empty($params['tag']['assigned_entity_id'])
             || empty($params['tag']['assigned_entity_type'])
         ) {
-            $response['error_message'] = $this->__('Invalid tag data.');
+            $response['error_message'] = $this->__('Invalid tag parameters.');
             return $this->sendJsonResponse($response);
         }
 

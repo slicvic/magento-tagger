@@ -42,7 +42,7 @@
                     }
 
                     $.ajax({
-                        url: '<?php echo $this->getUrl('wfn_tagger/ajax_tags/addtag') ?>',
+                        url: '<?php echo $this->getUrl('wfn_tagger/ajax_tags/tag') ?>',
                         method: 'post',
                         dataType: 'json',
                         beforeSend: function() {
@@ -85,7 +85,7 @@
                     var value = values[0];
 
                     $.ajax({
-                        url: '<?php echo $this->getUrl('wfn_tagger/ajax_tags/removetag') ?>',
+                        url: '<?php echo $this->getUrl('wfn_tagger/ajax_tags/untag') ?>',
                         method: 'post',
                         dataType: 'json',
                         beforeSend: function() {
