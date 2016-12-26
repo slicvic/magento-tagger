@@ -69,6 +69,7 @@
                             });
                         } else {
                             alert(response.error_message);
+                            callback(false);
                         }
                     }).fail(function() {
                         alert('Whoops! Something went wrong. Please try again!');
@@ -105,6 +106,7 @@
                     }).done(function(response) {
                         if (response.success) {
                             selectize.removeItem(value);
+                            selectize.removeOption(value);
                         } else {
                             alert(response.error_message);
                         }
