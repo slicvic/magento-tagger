@@ -28,7 +28,7 @@
         $(function() {
             var isLoading = false;
             var loadingMask = $('#loading-mask');
-            var tagInputSelectize;
+            var selectizeTagInput;
             var tagInput = $('#tag-input').selectize({
                 plugins: ['remove_button'],
                 delimiter: ',',
@@ -102,7 +102,7 @@
                         }
                     }).done(function(response) {
                         if (response.success) {
-                            tagInputSelectize.removeItem(value, true);
+                            selectizeTagInput.removeItem(value, true);
                         } else {
                             alert(response.error_message);
                         }
@@ -117,11 +117,11 @@
                 }
             });
 
-            tagInputSelectize = tagInput[0].selectize;
+            selectizeTagInput = tagInput[0].selectize;
 
             $('#tag-buttons').on('click', 'button', function() {
                 var tagName = $(this).data('name');
-                tagInputSelectize.createItem(tagName);
+                selectizeTagInput.createItem(tagName);
             });
         });
     }(jQuery));
