@@ -1,3 +1,8 @@
+<?php
+/**
+ * This template file is for the "Tags" tab in customer view and order view.
+ */
+?>
 <?php $assignedTagNames = []; ?>
 <?php foreach ($this->assignedTags as $tag) { $assignedTagNames[] = $tag->name; } ?>
 <div class="entry-edit">
@@ -24,109 +29,13 @@
     </fieldset>
 </div>
 <script>
-    (function($) {
-        $(function() {
-            var isLoading = false;
-            var selectize;
-            var elements = {
-                loadingMask: $('#loading-mask'),
-                tagInput: $('#tag-input'),
-                tagButtons: $('#tag-buttons')
-            };
-
-            elements.tagInput.selectize({
-                plugins: ['remove_button'],
-                delimiter: ',',
-                persist: false,
-                valueField: 'id',
-                labelField: 'name',
-                searchField: 'name',
-                create: function(input, callback) {
-                    if (isLoading) {
-                        return;
-                    }
-
-                    isLoading = true;
-                    elements.loadingMask.show();
-
-                    $.ajax({
-                        url: '<?php echo $this->getUrl('wfn_tagger/ajax_tags/tag') ?>',
-                        method: 'post',
-                        dataType: 'json',
-                        data: {
-                            form_key: '<?php echo Mage::getSingleton('core/session')->getFormKey() ?>',
-                            tag: {
-                                name: input,
-                                assigned_entity_id: '<?php echo $this->entityId ?>',
-                                assigned_entity_type: '<?php echo $this->entityType ?>'
-                            }
-                        }
-                    }).done(function(response) {
-                        if (response.success) {
-                            callback({
-                                id: input,
-                                name: input
-                            });
-                        } else {
-                            alert(response.error_message);
-                            callback(false);
-                        }
-                    }).fail(function() {
-                        alert('Oops! Something went wrong. Please try again!');
-                    }).always(function() {
-                        isLoading = false;
-                        elements.loadingMask.hide();
-                    });
-                },
-                onDelete: function(values) {
-                    if (!values || values.length !== 1) {
-                        return false;
-                    }
-
-                    if (isLoading) {
-                        return false;
-                    }
-
-                    var value = values[0];
-                    isLoading = true;
-                    elements.loadingMask.show();
-
-                    $.ajax({
-                        url: '<?php echo $this->getUrl('wfn_tagger/ajax_tags/untag') ?>',
-                        method: 'post',
-                        dataType: 'json',
-                        data: {
-                            form_key: '<?php echo Mage::getSingleton('core/session')->getFormKey() ?>',
-                            tag: {
-                                name: value,
-                                assigned_entity_id: '<?php echo $this->entityId ?>',
-                                assigned_entity_type: '<?php echo $this->entityType ?>'
-                            }
-                        }
-                    }).done(function(response) {
-                        if (response.success) {
-                            selectize.removeItem(value);
-                            selectize.removeOption(value);
-                        } else {
-                            alert(response.error_message);
-                        }
-                    }).fail(function() {
-                        alert('Oops! Something went wrong. Please try again!');
-                    }).always(function() {
-                        isLoading = false;
-                        elements.loadingMask.hide();
-                    });
-
-                    return false;
-                }
-            });
-
-            selectize = elements.tagInput[0].selectize;
-
-            elements.tagButtons.on('click', 'button', function() {
-                var tagName = $(this).data('name');
-                selectize.createItem(tagName);
-            });
+    jQuery(function() {
+        WfnTaggerModule.init({
+            tagUrl: '<?php echo $this->getUrl('wfn_tagger/ajax_tags/tag') ?>',
+            untagUrl: '<?php echo $this->getUrl('wfn_tagger/ajax_tags/untag') ?>',
+            formKey: '<?php echo Mage::getSingleton('core/session')->getFormKey() ?>',
+            entityId: '<?php echo $this->entityId ?>',
+            entityType: '<?php echo $this->entityType ?>'
         });
-    }(jQuery));
+    });
 </script>
