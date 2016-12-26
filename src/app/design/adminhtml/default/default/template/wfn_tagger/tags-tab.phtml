@@ -41,14 +41,13 @@
                         return;
                     }
 
+                    isLoading = true;
+                    loadingMask.show();
+
                     $.ajax({
                         url: '<?php echo $this->getUrl('wfn_tagger/ajax_tags/tag') ?>',
                         method: 'post',
                         dataType: 'json',
-                        beforeSend: function() {
-                            isLoading = true;
-                            loadingMask.show();
-                        },
                         data: {
                             form_key: '<?php echo Mage::getSingleton('core/session')->getFormKey() ?>',
                             tag: {
@@ -83,15 +82,13 @@
                     }
 
                     var value = values[0];
+                    isLoading = true;
+                    loadingMask.show();
 
                     $.ajax({
                         url: '<?php echo $this->getUrl('wfn_tagger/ajax_tags/untag') ?>',
                         method: 'post',
                         dataType: 'json',
-                        beforeSend: function() {
-                            isLoading = true;
-                            loadingMask.show();
-                        },
                         data: {
                             form_key: '<?php echo Mage::getSingleton('core/session')->getFormKey() ?>',
                             tag: {
@@ -102,7 +99,7 @@
                         }
                     }).done(function(response) {
                         if (response.success) {
-                            selectizeTagInput.removeItem(value, true);
+                            selectizeTagInput.removeItem(value);
                         } else {
                             alert(response.error_message);
                         }
