@@ -65,9 +65,9 @@ class Wfn_Tagger_Model_TagRelation extends Mage_Core_Model_Abstract
      */
     public static function isValidEntityType($entityType)
     {
-        return (in_array($entityType, array(
+        return (in_array($entityType, [
             static::ENTITY_TYPE_ORDER,
             static::ENTITY_TYPE_CUSTOMER,
-        )));
+            ]));
     }
 }

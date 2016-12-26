@@ -41,9 +41,9 @@ class Wfn_Tagger_Model_Resource_TagRelation extends Mage_Core_Model_Resource_Db_
         $connection = $coreResource->getConnection('core_read');
 
         return $connection->delete($coreResource->getTableName('wfn_tagger/relation'), [
-                'tag_id = ?' => $tagId,
-                'entity_id = ?' => $entityId,
-                'entity_type = ?' => $entityType,
+            'tag_id = ?' => $tagId,
+            'entity_id = ?' => $entityId,
+            'entity_type = ?' => $entityType,
             ]);
     }
 }
