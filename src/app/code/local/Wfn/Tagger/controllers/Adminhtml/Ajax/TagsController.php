@@ -25,7 +25,7 @@ class Wfn_Tagger_Adminhtml_Ajax_TagsController extends Mage_Adminhtml_Controller
         }
 
         try {
-            Wfn_Tagger_Model_Resource_Tag::createTagAndAssignEntity(
+            Wfn_Tagger_Model_Resource_TagRelation::addRelationByTagName(
                 $params['tag_name'],
                 $params['entity_id'],
                 $params['entity_type'],

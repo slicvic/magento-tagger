@@ -67,7 +67,8 @@ trait Wfn_Tagger_Block_Adminhtml_TaggableTrait
     {
         $this->allTags = Mage::getModel('wfn_tagger/tag')
             ->getCollection()
-            ->addFieldToSelect(['tag_id', 'name']);
+            ->addFieldToSelect(['tag_id', 'name'])
+            ->setOrder('name', 'ASC');
     }
 
     /**
@@ -78,6 +79,7 @@ trait Wfn_Tagger_Block_Adminhtml_TaggableTrait
         $this->assignedTags = Mage::getModel('wfn_tagger/tag')
             ->getCollection()
             ->addEntityFilter($this->entityId, $this->entityType)
-            ->addFieldToSelect(['tag_id', 'name']);
+            ->addFieldToSelect(['tag_id', 'name'])
+            ->setOrder('name', 'ASC');
     }
 }
