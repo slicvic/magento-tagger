@@ -43,7 +43,7 @@ class Wfn_Tagger_Model_TagRelation extends Mage_Core_Model_Abstract
         $errors = [];
 
         if (!Zend_Validate::is($this->entity_id, 'Digits')) {
-            $errors[] = Mage::helper('wfn_tagger')->__('Entity ID must only contain digits.');
+            $errors[] = Mage::helper('wfn_tagger')->__('Entity ID must contain only digits.');
         }
 
         if (!static::isValidEntityType($this->entity_type)) {

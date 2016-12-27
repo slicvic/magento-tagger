@@ -4,7 +4,7 @@
  */
 ?>
 <?php $assignedTagNames = []; ?>
-<?php foreach ($this->assignedTags as $tag) { $assignedTagNames[] = $tag->name; } ?>
+<?php foreach ($this->assignedTags as $tag) { $assignedTagNames[] = $this->escapeHtml($tag->name); } ?>
 <div class="entry-edit">
     <div class="entry-edit-head">
         <h4 class="icon-head head-shipping-method">Tags</h4>
@@ -23,7 +23,7 @@
                     type="button"
                     class="scalable"
                     data-id="<?php echo $tag->id ?>"
-                    data-name="<?php echo $tag->name ?>"><?php echo $tag->name ?></button>
+                    data-name="<?php echo $this->escapeHtml($tag->name) ?>"><?php echo $this->escapeHtml($tag->name) ?></button>
             <?php endforeach; ?>
         </div>
     </fieldset>
