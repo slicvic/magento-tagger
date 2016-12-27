@@ -20,7 +20,7 @@ class Wfn_Tagger_Adminhtml_Ajax_TagsController extends Mage_Adminhtml_Controller
             || empty($params['entity_id'])
             || empty($params['entity_type'])
         ) {
-            $response['error_message'] = $this->__('Invalid parameters.');
+            $response['error_message'] = $this->__('Missing required parameters.');
             return $this->sendJsonResponse($response);
         }
 
@@ -39,7 +39,7 @@ class Wfn_Tagger_Adminhtml_Ajax_TagsController extends Mage_Adminhtml_Controller
             $response['error_message'] = $this->__($e->getMessage());
         } catch (Exception $e) {
             Mage::log($e->getMessage());
-            $response['error_message'] = $this->__('Oops! That tag is already assigned or something went wrong. Please try again!');
+            $response['error_message'] = $this->__('Oops! Something went wrong. Please refresh the page and try again!');
         }
 
         return $this->sendJsonResponse($response);
@@ -59,7 +59,7 @@ class Wfn_Tagger_Adminhtml_Ajax_TagsController extends Mage_Adminhtml_Controller
             || empty($params['entity_id'])
             || empty($params['entity_type'])
         ) {
-            $response['error_message'] = $this->__('Invalid parameters.');
+            $response['error_message'] = $this->__('Missing required parameters.');
             return $this->sendJsonResponse($response);
         }
 
@@ -80,7 +80,7 @@ class Wfn_Tagger_Adminhtml_Ajax_TagsController extends Mage_Adminhtml_Controller
 
         } catch (Exception $e) {
             Mage::log($e->getMessage());
-            $response['error_message'] = $this->__('Oops! Something went wrong. Please try again!');
+            $response['error_message'] = $this->__('Oops! Something went wrong. Please refresh the page and try again!');
         }
 
         return $this->sendJsonResponse($response);
