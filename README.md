@@ -12,7 +12,7 @@ Make sure to set `magento-root-dir` to the directory where your magento resides.
 {
     "require": {
         "magento-hackathon/magento-composer-installer": "*",
-        "wfn/magento-module-tagger": "dev-develop"
+        "wfn/magento-module-tagger": "dev-master"
     },
     "repositories": [
         {
