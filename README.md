@@ -1,5 +1,5 @@
 # Magento Tagger 1.0
-This Magento 1.9 extension adds the ability to tag orders and customers.
+A Magento 1.9 module that adds the ability to tag orders and customers.
 
 ## Installation via Composer
 In order to pull in the module via composer you will need to create a composer.json file in your project root folder.
