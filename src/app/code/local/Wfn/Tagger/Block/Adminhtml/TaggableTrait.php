@@ -5,14 +5,14 @@
 trait Wfn_Tagger_Block_Adminhtml_TaggableTrait
 {
     /**
-     * ID of the entity for tagging.
+     * ID of the entity to be tagged.
      *
      * @var int
      */
     public $entityId;
 
     /**
-     * Type of the entity for tagging.
+     * Type of the entity to be tagged.
      *
      * @var One of the Wfn_Tagger_Model_TagRelation::ENTITY_TYPE_* constants
      */
