@@ -1,7 +1,7 @@
 {
     "name": "wfn/magento-module-tagger",
     "type": "magento-module",
-    "description": "Magento 1.9 plugin for tagging orders and customers.",
+    "description": "Magento 1.9 extension for tagging orders and customers.",
     "require": {
         "magento-hackathon/magento-composer-installer": "*"
     },
