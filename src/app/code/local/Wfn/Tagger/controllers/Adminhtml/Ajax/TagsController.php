@@ -39,7 +39,7 @@ class Wfn_Tagger_Adminhtml_Ajax_TagsController extends Mage_Adminhtml_Controller
             $response['error_message'] = $this->__($e->getMessage());
         } catch (Exception $e) {
             Mage::log($e->getMessage());
-            $response['error_message'] = $this->__('Oops! Tag already added or something went wrong. Please try again!');
+            $response['error_message'] = $this->__('Oops! Something went wrong. Please refresh the page and try again!');
         }
 
         return $this->sendJsonResponse($response);
@@ -80,7 +80,7 @@ class Wfn_Tagger_Adminhtml_Ajax_TagsController extends Mage_Adminhtml_Controller
 
         } catch (Exception $e) {
             Mage::log($e->getMessage());
-            $response['error_message'] = $this->__('Oops! Something went wrong. Please try again!');
+            $response['error_message'] = $this->__('Oops! Something went wrong. Please refresh the page and try again!');
         }
 
         return $this->sendJsonResponse($response);
