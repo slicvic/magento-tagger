@@ -20,7 +20,7 @@ class Wfn_Tagger_Adminhtml_Ajax_TagsController extends Mage_Adminhtml_Controller
             || empty($params['entity_id'])
             || empty($params['entity_type'])
         ) {
-            $response['error_message'] = $this->__('Invalid parameters.');
+            $response['error_message'] = $this->__('Missing required parameters.');
             return $this->sendJsonResponse($response);
         }
 
@@ -59,7 +59,7 @@ class Wfn_Tagger_Adminhtml_Ajax_TagsController extends Mage_Adminhtml_Controller
             || empty($params['entity_id'])
             || empty($params['entity_type'])
         ) {
-            $response['error_message'] = $this->__('Invalid parameters.');
+            $response['error_message'] = $this->__('Missing required parameters.');
             return $this->sendJsonResponse($response);
         }
 
