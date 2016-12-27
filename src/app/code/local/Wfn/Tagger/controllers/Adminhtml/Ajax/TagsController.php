@@ -1,6 +1,6 @@
 <?php
 /**
- * Tag controller.
+ * Tags AJAX controller.
  */
 class Wfn_Tagger_Adminhtml_Ajax_TagsController extends Mage_Adminhtml_Controller_Action
 {
