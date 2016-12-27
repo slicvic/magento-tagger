@@ -1,4 +1,6 @@
-var WfnTaggerModule = (function($) {
+var Wfn = Wfn || {};
+Wfn.Modules = Wfn.Modules || {};
+Wfn.Modules.Tagger = (function($) {
     var settings = {
         formKey: null,
         tagUrl: null,

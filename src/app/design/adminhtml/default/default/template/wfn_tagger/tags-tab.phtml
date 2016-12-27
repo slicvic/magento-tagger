@@ -30,7 +30,7 @@
 </div>
 <script>
     jQuery(function() {
-        WfnTaggerModule.init({
+        Wfn.Modules.Tagger.init({
             tagUrl: '<?php echo $this->getUrl('wfn_tagger/ajax_tags/tag') ?>',
             untagUrl: '<?php echo $this->getUrl('wfn_tagger/ajax_tags/untag') ?>',
             formKey: '<?php echo Mage::getSingleton('core/session')->getFormKey() ?>',

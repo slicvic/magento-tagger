@@ -22,9 +22,10 @@
     <adminhtml_customer_edit>
         <!-- Add required JS and CSS -->
         <reference name="head">
+            <action method="addCss"><name>wfn_tagger/selectize/selectize.css</name></action>
             <action method="addJs"><script>wfn_tagger/jquery/jquery-3.1.1.min.no-conflict.js</script></action>
             <action method="addJs"><script>wfn_tagger/selectize/selectize.min.js</script></action>
-            <action method="addCss"><name>wfn_tagger/selectize/selectize.css</name></action>
+            <action method="addJs"><script>wfn_tagger/main.js</script></action>
         </reference>
         <!-- Add "Tags" tab -->
         <reference name="customer_edit_tabs">
