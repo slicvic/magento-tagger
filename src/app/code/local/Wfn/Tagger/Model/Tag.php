@@ -38,13 +38,9 @@ class Wfn_Tagger_Model_Tag extends Mage_Core_Model_Abstract
     {
         $errors = [];
 
-        if (!Zend_Validate::is(trim($this->name), 'NotEmpty')) {
-            $errors[] = Mage::helper('wfn_tagger')->__('Tag name must not be blank.');
-        } else if (!preg_match('/^[a-zA-Z0-9\s-.@]+$/', $this->name)) {
-            $errors[] = Mage::helper('wfn_tagger')->__('Tag name must contain only letters, numbers, spaces, and -.@');
-        } elseif (!Zend_Validate::is($this->name, 'StringLength', [self::MINIMUM_NAME_LENGTH])) {
+        if (!Zend_Validate::is($this->name, 'Regex', ['pattern' => sprintf('/^[a-zA-Z0-9\s-.@]{%s,}$/', self::MINIMUM_NAME_LENGTH)])) {
             $errors[] = Mage::helper('wfn_tagger')
-                ->__('Tag name must be at least %s characters long.', self::MINIMUM_NAME_LENGTH);
+                ->__('Tag name must be at least %s characters long and contain only letters, numbers, spaces, and -.@', self::MINIMUM_NAME_LENGTH);
         }
 
         if (empty($errors)) {
