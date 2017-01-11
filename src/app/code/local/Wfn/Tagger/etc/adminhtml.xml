@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <wfn_tagger translate="title" module="sales">
+                        <title>WFN Tagger</title>
+                        <children>
+                            <tag_orders_customers translate="title"><title>Tag Orders &amp; Customers</title></tag_orders_customers>
+                        </children>
+                    </wfn_tagger>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

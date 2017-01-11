@@ -46,7 +46,7 @@ Wfn.Modules.Tagger = (function($) {
             searchField: 'name',
             create: function(input, callback) {
                 if (selectize.getItem(input).length) {
-                    alert('Tag already added!');
+                    alert('Tag already added.');
                     return callback(false);
                 }
 
@@ -77,9 +77,9 @@ Wfn.Modules.Tagger = (function($) {
                         callback(false);
                         alert(response.error_message);
                     }
-                }).fail(function() {
+                }).fail(function(jqXHR) {
                     callback(false);
-                    alert('Oops! Something went wrong. Please try again!');
+                    alert('Failed to add tag. Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
                 }).always(function() {
                     isProcessing = false;
                     elements.loadingMask.hide();
@@ -115,8 +115,8 @@ Wfn.Modules.Tagger = (function($) {
                     } else {
                         alert(response.error_message);
                     }
-                }).fail(function() {
-                    alert('Oops! Something went wrong. Please try again!');
+                }).fail(function(jqXHR) {
+                    alert('Failed to remove tag. Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
                 }).always(function() {
                     isProcessing = false;
                     elements.loadingMask.hide();
