@@ -20,7 +20,7 @@ class Wfn_Tagger_Adminhtml_Ajax_TagsController extends Mage_Adminhtml_Controller
             || empty($params['entity_id'])
             || empty($params['entity_type'])
         ) {
-            $response['error_message'] = $this->__('Missing required parameters.');
+            $response['error_message'] = $this->__('Invalid parameters.');
             return $this->sendJsonResponse($response);
         }
 
@@ -31,15 +31,12 @@ class Wfn_Tagger_Adminhtml_Ajax_TagsController extends Mage_Adminhtml_Controller
                 $params['entity_type'],
                 Mage::getSingleton('admin/session')->getUser()->getUserId()
             );
-
-
             $response['success'] = true;
-
         } catch (Wfn_Tagger_Model_Validation_Exception $e) {
             $response['error_message'] = $this->__($e->getMessage());
         } catch (Exception $e) {
             Mage::log($e->getMessage());
-            $response['error_message'] = $this->__('Oops! Something went wrong. Please refresh the page and try again!');
+            $response['error_message'] = $this->__('Failed to add tag. Error: ' . $e->getMessage());
         }
 
         return $this->sendJsonResponse($response);
@@ -59,12 +56,13 @@ class Wfn_Tagger_Adminhtml_Ajax_TagsController extends Mage_Adminhtml_Controller
             || empty($params['entity_id'])
             || empty($params['entity_type'])
         ) {
-            $response['error_message'] = $this->__('Missing required parameters.');
+            $response['error_message'] = $this->__('Invalid parameters.');
             return $this->sendJsonResponse($response);
         }
 
         try {
             $tag = Wfn_Tagger_Model_Resource_Tag::loadByName($params['tag_name']);
+
             if (!$tag->getId()) {
                 $response['error_message'] = $this->__('Tag not found.');
                 return $this->sendJsonResponse($response);
@@ -77,10 +75,9 @@ class Wfn_Tagger_Adminhtml_Ajax_TagsController extends Mage_Adminhtml_Controller
             );
 
             $response['success'] = true;
-
         } catch (Exception $e) {
             Mage::log($e->getMessage());
-            $response['error_message'] = $this->__('Oops! Something went wrong. Please refresh the page and try again!');
+            $response['error_message'] = $this->__('Failed to remove tag. Error: ' . $e->getMessage());
         }
 
         return $this->sendJsonResponse($response);
@@ -95,5 +92,13 @@ class Wfn_Tagger_Adminhtml_Ajax_TagsController extends Mage_Adminhtml_Controller
     {
         $this->getResponse()->setHeader('Content-type', 'application/json');
         $this->getResponse()->setBody(json_encode($data));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function _isAllowed()
+    {
+        return Mage::getSingleton('admin/session')->isAllowed('wfn_tagger/tag_orders_customers');
     }
 }
