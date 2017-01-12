@@ -3,33 +3,25 @@
  * Customer view tags tab block.
  */
 class Wfn_Tagger_Block_Adminhtml_CustomerViewTagsTab
-    extends Mage_Adminhtml_Block_Sales_Order_Abstract
+    extends Mage_Adminhtml_Block_Template
     implements Mage_Adminhtml_Block_Widget_Tab_Interface
 {
-    use Wfn_Tagger_Block_Adminhtml_TaggableTrait;
+    /**
+     * @var Wfn_Tagger_Block_Adminhtml_Widget_Input
+     */
+    public $widget;
 
     /**
      * {@inheritdoc}
      */
-    protected function initEntityId()
+    protected function _construct()
     {
-        $this->entityId = Mage::registry('current_customer')->getId();
-    }
+        $this->_template = 'wfn_tagger/customer-view-tags-tab.phtml';
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function initEntityType()
-    {
-        $this->entityType = Wfn_Tagger_Model_TagRelation::ENTITY_TYPE_CUSTOMER;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function initTemplate()
-    {
-        $this->setTemplate('wfn_tagger/tags-tab.phtml');
+        $this->widget = new Wfn_Tagger_Block_Adminhtml_Widget_Input(
+            Mage::registry('current_customer')->getId(),
+            Wfn_Tagger_Model_TagRelation::ENTITY_TYPE_CUSTOMER
+        );
     }
 
     /**

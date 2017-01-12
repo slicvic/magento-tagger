@@ -9,14 +9,15 @@ class Wfn_Tagger_Adminhtml_Ajax_TagsController extends Mage_Adminhtml_Controller
      *
      * @return JSON string
      */
-    public function tagAction()
+    public function addAction()
     {
         $request = $this->getRequest();
         $params = $request->getParams();
-        $response = ['success' => false];
+        $response = [
+            'success' => false
+        ];
 
-        if (
-            empty($params['tag_name'])
+        if (empty($params['tag_name'])
             || empty($params['entity_id'])
             || empty($params['entity_type'])
         ) {
@@ -35,7 +36,6 @@ class Wfn_Tagger_Adminhtml_Ajax_TagsController extends Mage_Adminhtml_Controller
         } catch (Wfn_Tagger_Model_Validation_Exception $e) {
             $response['error_message'] = $this->__($e->getMessage());
         } catch (Exception $e) {
-            Mage::log($e->getMessage());
             $response['error_message'] = $this->__('Failed to add tag. Error: ' . $e->getMessage());
         }
 
@@ -45,14 +45,15 @@ class Wfn_Tagger_Adminhtml_Ajax_TagsController extends Mage_Adminhtml_Controller
     /**
      * Untag an entity.
      */
-    public function untagAction()
+    public function removeAction()
     {
         $request = $this->getRequest();
         $params = $request->getParams();
-        $response = ['success' => false];
+        $response = [
+            'success' => false
+        ];
 
-        if (
-            empty($params['tag_name'])
+        if (empty($params['tag_name'])
             || empty($params['entity_id'])
             || empty($params['entity_type'])
         ) {
@@ -76,7 +77,6 @@ class Wfn_Tagger_Adminhtml_Ajax_TagsController extends Mage_Adminhtml_Controller
 
             $response['success'] = true;
         } catch (Exception $e) {
-            Mage::log($e->getMessage());
             $response['error_message'] = $this->__('Failed to remove tag. Error: ' . $e->getMessage());
         }
 
