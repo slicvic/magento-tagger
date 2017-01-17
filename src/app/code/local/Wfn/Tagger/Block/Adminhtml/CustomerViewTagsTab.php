@@ -7,21 +7,16 @@ class Wfn_Tagger_Block_Adminhtml_CustomerViewTagsTab
     implements Mage_Adminhtml_Block_Widget_Tab_Interface
 {
     /**
-     * @var Wfn_Tagger_Block_Adminhtml_Widget_Input
-     */
-    public $widget;
-
-    /**
      * {@inheritdoc}
      */
     protected function _construct()
     {
         $this->_template = 'wfn_tagger/customer-view-tags-tab.phtml';
 
-        $this->widget = new Wfn_Tagger_Block_Adminhtml_Widget_Input(
+        $this->setChild('tag_widget', new Wfn_Tagger_Block_Adminhtml_Widget_Input(
             Mage::registry('current_customer')->getId(),
             Wfn_Tagger_Model_TagRelation::ENTITY_TYPE_CUSTOMER
-        );
+        ));
     }
 
     /**

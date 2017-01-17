@@ -20,9 +20,9 @@
 <script>
     jQuery(function() {
         Wfn.Modules.Tagger.InputWidget.init({
-            addUrl: '<?php echo $this->addUrl ?>',
-            removeUrl: '<?php echo $this->removeUrl ?>',
-            formKey: '<?php echo $this->formKey ?>',
+            addTagUrl: '<?php echo $this->addTagUrl ?>',
+            removeTagUrl: '<?php echo $this->removeTagUrl ?>',
+            formKey: '<?php echo $this->getFormKey() ?>',
             entityId: '<?php echo $this->entityId ?>',
             entityType: '<?php echo $this->entityType ?>'
         });

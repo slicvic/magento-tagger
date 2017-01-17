@@ -1,15 +1,15 @@
 <?php
 /**
- * Tags AJAX controller.
+ * Widget AJAX controller.
  */
-class Wfn_Tagger_Adminhtml_Ajax_TagsController extends Mage_Adminhtml_Controller_Action
+class Wfn_Tagger_Adminhtml_WidgetAjaxController extends Mage_Adminhtml_Controller_Action
 {
     /**
      * Tag an entity.
      *
      * @return JSON string
      */
-    public function addAction()
+    public function addTagAction()
     {
         $request = $this->getRequest();
         $params = $request->getParams();
@@ -45,7 +45,7 @@ class Wfn_Tagger_Adminhtml_Ajax_TagsController extends Mage_Adminhtml_Controller
     /**
      * Untag an entity.
      */
-    public function removeAction()
+    public function removeTagAction()
     {
         $request = $this->getRequest();
         $params = $request->getParams();

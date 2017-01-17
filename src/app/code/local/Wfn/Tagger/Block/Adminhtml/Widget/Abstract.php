@@ -34,25 +34,18 @@ abstract class Wfn_Tagger_Block_Adminhtml_Widget_Abstract
     public $allTags;
 
     /**
-     * URL to add tag to entity.
+     * Endpoint to tag entity.
      *
      * @var string
      */
-    public $addUrl;
+    public $addTagUrl;
 
     /**
-     * URL to remove tag from entity.
+     * Endpoint to untag entity.
      *
      * @var string
      */
-    public $removeUrl;
-
-    /**
-     * CSRF form token.
-     *
-     * @var string
-     */
-    public $formKey;
+    public $removeTagUrl;
 
     /**
      * Constructor.
@@ -66,16 +59,17 @@ abstract class Wfn_Tagger_Block_Adminhtml_Widget_Abstract
 
         $this->entityId = $entityId;
         $this->entityType = $entityType;
-        $this->addUrl = Mage::getUrl('wfn_tagger/ajax_tags/add');
-        $this->removeUrl = Mage::getUrl('wfn_tagger/ajax_tags/remove');
-        $this->formKey =  Mage::getSingleton('core/session')->getFormKey();
+        $this->addTagUrl = Mage::getUrl('wfn_tagger/widgetajax/addtag');
+        $this->removeTagUrl = Mage::getUrl('wfn_tagger/widgetajax/removetag');
+
+        $this->allTags = Mage::getModel('wfn_tagger/tag')
+            ->getCollection()
+            ->addFieldToSelect(['tag_id', 'name'])
+            ->setOrder('name', 'ASC');
+
         $this->assignedTags = Mage::getModel('wfn_tagger/tag')
             ->getCollection()
             ->addEntityFilter($this->entityId, $this->entityType)
-            ->addFieldToSelect(['tag_id', 'name'])
-            ->setOrder('name', 'ASC');
-        $this->allTags = Mage::getModel('wfn_tagger/tag')
-            ->getCollection()
             ->addFieldToSelect(['tag_id', 'name'])
             ->setOrder('name', 'ASC');
     }

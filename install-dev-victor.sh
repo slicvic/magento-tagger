@@ -2,7 +2,7 @@
 #
 # Module install script for local dev.
 
-magentoRootPath="/Users/$USER/Code/magento-1.9.3/root"
+magentoRootPath="/Users/$USER/Code/magento19/root"
 
 rm $magentoRootPath/app/etc/modules/Wfn_Tagger.xml
 rm -R $magentoRootPath/app/code/local/Wfn/Tagger/
