@@ -1,10 +1,13 @@
 var Wfn = Wfn || {};
 Wfn.Modules = Wfn.Modules || {};
-Wfn.Modules.Tagger = (function($) {
+Wfn.Modules.Tagger = Wfn.Modules.Tagger || {};
+Wfn.Modules.Tagger.InputWidget = (function($) {
+    var selectize;
+    var isProcessing = false;
     var settings = {
         formKey: null,
-        tagUrl: null,
-        untagUrl: null,
+        addTagUrl: null,
+        removeTagUrl: null,
         entityId: null,
         entityType: null
     };
@@ -13,8 +16,6 @@ Wfn.Modules.Tagger = (function($) {
         tagInput: null,
         tagButtons: null
     };
-    var isProcessing = false;
-    var selectize;
 
     function init(_settings) {
         settings = _settings || {};
@@ -46,7 +47,7 @@ Wfn.Modules.Tagger = (function($) {
             searchField: 'name',
             create: function(input, callback) {
                 if (selectize.getItem(input).length) {
-                    alert('Tag already added.');
+                    alert('Tag already added!');
                     return callback(false);
                 }
 
@@ -58,7 +59,7 @@ Wfn.Modules.Tagger = (function($) {
                 elements.loadingMask.show();
 
                 $.ajax({
-                    url: settings.tagUrl,
+                    url: settings.addTagUrl,
                     method: 'post',
                     dataType: 'json',
                     data: {
@@ -99,7 +100,7 @@ Wfn.Modules.Tagger = (function($) {
                 elements.loadingMask.show();
 
                 $.ajax({
-                    url: settings.untagUrl,
+                    url: settings.removeTagUrl,
                     method: 'post',
                     dataType: 'json',
                     data: {

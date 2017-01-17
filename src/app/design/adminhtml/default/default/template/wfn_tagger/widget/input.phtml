@@ -1,0 +1,30 @@
+<?php $assignedTagNames = []; ?>
+<?php foreach ($this->assignedTags as $tag) { $assignedTagNames[] = $this->escapeHtml($tag->name); } ?>
+<div>
+    <input
+        type="text"
+        id="tag-input"
+        value="<?php echo implode(',', $assignedTagNames) ?>">
+</div>
+<strong>Click to add previously used tags:</strong>
+<div id="tag-buttons">
+    <?php foreach ($this->allTags as $tag): ?>
+        <button
+            type="button"
+            class="scalable"
+            data-id="<?php echo $tag->id ?>"
+            data-name="<?php echo $this->escapeHtml($tag->name) ?>"><?php echo $this->escapeHtml($tag->name) ?></button>
+    <?php endforeach; ?>
+</div>
+
+<script>
+    jQuery(function() {
+        Wfn.Modules.Tagger.InputWidget.init({
+            addTagUrl: '<?php echo $this->addTagUrl ?>',
+            removeTagUrl: '<?php echo $this->removeTagUrl ?>',
+            formKey: '<?php echo $this->getFormKey() ?>',
+            entityId: '<?php echo $this->entityId ?>',
+            entityType: '<?php echo $this->entityType ?>'
+        });
+    });
+</script>

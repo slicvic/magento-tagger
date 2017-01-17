@@ -1,8 +1,9 @@
 <?php
 /**
- * Trait for tags block.
+ * Abstract widget for tagging entities.
  */
-trait Wfn_Tagger_Block_Adminhtml_TaggableTrait
+abstract class Wfn_Tagger_Block_Adminhtml_Widget_Abstract
+    extends Mage_Adminhtml_Block_Template
 {
     /**
      * ID of the entity to be tagged.
@@ -19,13 +20,6 @@ trait Wfn_Tagger_Block_Adminhtml_TaggableTrait
     public $entityType;
 
     /**
-     * List of all tags.
-     *
-     * @var Wfn_Tagger_Model_Resource_Tag_Collection
-     */
-    public $allTags;
-
-    /**
      * List of tags assigned to entity.
      *
      * @var Wfn_Tagger_Model_Resource_Tag_Collection
@@ -33,49 +27,46 @@ trait Wfn_Tagger_Block_Adminhtml_TaggableTrait
     public $assignedTags;
 
     /**
-     * {@inheritdoc}
+     * List of all available tags.
+     *
+     * @var Wfn_Tagger_Model_Resource_Tag_Collection
      */
-    protected function _construct()
+    public $allTags;
+
+    /**
+     * Endpoint to tag entity.
+     *
+     * @var string
+     */
+    public $addTagUrl;
+
+    /**
+     * Endpoint to untag entity.
+     *
+     * @var string
+     */
+    public $removeTagUrl;
+
+    /**
+     * Constructor.
+     *
+     * @param int $entityId
+     * @param One of the Wfn_Tagger_Model_TagRelation::ENTITY_TYPE_* constants $entityType
+     */
+    public function __construct($entityId, $entityType)
     {
-        parent::_construct();
-        $this->initTemplate();
-        $this->initEntityId();
-        $this->initEntityType();
-        $this->initAllTags();
-        $this->initAssignedTags();
-    }
+        parent::__construct();
 
-    /**
-     * Initialize $this->entityId.
-     */
-    abstract protected function initEntityId();
+        $this->entityId = $entityId;
+        $this->entityType = $entityType;
+        $this->addTagUrl = Mage::getUrl('wfn_tagger/widgetajax/addtag');
+        $this->removeTagUrl = Mage::getUrl('wfn_tagger/widgetajax/removetag');
 
-    /**
-     * Initialize $this->entityType.
-     */
-    abstract protected function initEntityType();
-
-    /**
-     * Initialize $this->_template.
-     */
-    abstract protected function initTemplate();
-
-    /**
-     * Initialize $this->allTags.
-     */
-    protected function initAllTags()
-    {
         $this->allTags = Mage::getModel('wfn_tagger/tag')
             ->getCollection()
             ->addFieldToSelect(['tag_id', 'name'])
             ->setOrder('name', 'ASC');
-    }
 
-    /**
-     * Initialize $this->assignedTags.
-     */
-    protected function initAssignedTags()
-    {
         $this->assignedTags = Mage::getModel('wfn_tagger/tag')
             ->getCollection()
             ->addEntityFilter($this->entityId, $this->entityType)
