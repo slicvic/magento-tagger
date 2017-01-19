@@ -59,8 +59,8 @@ abstract class Wfn_Tagger_Block_Adminhtml_Widget_Abstract
 
         $this->entityId = $entityId;
         $this->entityType = $entityType;
-        $this->addTagUrl = Mage::getUrl('wfn_tagger/widgetajax/addtag');
-        $this->removeTagUrl = Mage::getUrl('wfn_tagger/widgetajax/removetag');
+        $this->addTagUrl = Mage::getUrl('wfn_tagger/widget_ajax/addtag');
+        $this->removeTagUrl = Mage::getUrl('wfn_tagger/widget_ajax/removetag');
 
         $this->allTags = Mage::getModel('wfn_tagger/tag')
             ->getCollection()
