@@ -2,7 +2,7 @@
 /**
  * Widget AJAX controller.
  */
-class Wfn_Tagger_Adminhtml_WidgetAjaxController extends Mage_Adminhtml_Controller_Action
+class Wfn_Tagger_Adminhtml_Widget_AjaxController extends Mage_Adminhtml_Controller_Action
 {
     /**
      * Tag an entity.
