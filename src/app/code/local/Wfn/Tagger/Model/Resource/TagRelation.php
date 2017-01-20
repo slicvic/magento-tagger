@@ -54,6 +54,7 @@ class Wfn_Tagger_Model_Resource_TagRelation extends Mage_Core_Model_Resource_Db_
      * @param int $entityId
      * @param One of the Wfn_Tagger_Model_TagRelation::ENTITY_TYPE_* constants $entityType
      * @param int $createdUid
+     * @return Wfn_Tagger_Model_Tag
      * @throws Exception
      */
     public static function addRelationByTagName($tagName, $entityId, $entityType, $createdUid)
@@ -66,12 +67,12 @@ class Wfn_Tagger_Model_Resource_TagRelation extends Mage_Core_Model_Resource_Db_
             // Check if tag already exists, and if not, create it
             $tag = Wfn_Tagger_Model_Resource_Tag::loadByName($tagName);
             if (!$tag->getId()) {
-                $tag->name = trim($tagName);
+                $tag->name = ucwords(strtolower(trim($tagName)));
                 $tag->created_uid = $createdUid;
                 $tag->save();
             }
 
-            // Assign entity to tag
+            // Assign tag to entity
             $tagRelation = Mage::getModel('wfn_tagger/tagRelation');
             $tagRelation->tag_id = $tag->getId();
             $tagRelation->entity_id = $entityId;
@@ -81,6 +82,7 @@ class Wfn_Tagger_Model_Resource_TagRelation extends Mage_Core_Model_Resource_Db_
 
             $tagResource->commit();
 
+            return $tag;
         } catch (Exception $e) {
             $tagResource->rollback();
             throw $e;
