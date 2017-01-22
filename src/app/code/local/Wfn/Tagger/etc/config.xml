@@ -36,6 +36,14 @@
             <wfn_tagger>
                 <class>Wfn_Tagger_Block</class>
             </wfn_tagger>
+            <adminhtml>
+                <rewrite>
+                    <sales_order_grid>Wfn_Tagger_Block_Adminhtml_OrdersGrid</sales_order_grid>
+                </rewrite>
+                <rewrite>
+                    <customer_grid>Wfn_Tagger_Block_Adminhtml_CustomersGrid</customer_grid>
+                </rewrite>
+            </adminhtml>
         </blocks>
         <helpers>
             <wfn_tagger>
@@ -58,6 +66,11 @@
                     </relation>
                 </entities>
             </wfn_tagger_resource>
+            <customer_resource>
+                <rewrite>
+                    <customer_collection>Wfn_Tagger_Model_Resource_CustomerCollection</customer_collection>
+                </rewrite>
+            </customer_resource>
         </models>
         <resources>
             <wfn_tagger_setup>
