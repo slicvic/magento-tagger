@@ -1,6 +1,6 @@
 <?php
 /**
- * Block for rendering the tags tab on order view page.
+ * Block for rendering tags tab on order view page.
  */
 class Wfn_Tagger_Block_Adminhtml_OrderViewTagsTab
     extends Mage_Adminhtml_Block_Template
