@@ -1,6 +1,6 @@
 <?php
 /**
- * Abstract widget for tagging entities.
+ * Abstract block for rendering tagging widget.
  */
 abstract class Wfn_Tagger_Block_Adminhtml_Widget_Abstract
     extends Mage_Adminhtml_Block_Template
