@@ -10,12 +10,10 @@ class Wfn_Tagger_Block_Adminhtml_GridTagsColumnRenderer extends Mage_Adminhtml_B
     public function render(Varien_Object $row)
     {
         $value = $row->getData($this->getColumn()->getIndex());
-
         if (empty($value)) {
-            return;
+            return '';
         }
-
-        $css = "background-color:#7f8c8d;color:#fff;padding:3px;margin:2px;border-radius:3px;";
-        return "<div style=\"margin-top:4px\"><span style=\"$css\">" . str_replace(',', "</span><span style=\"$css\">", $value) . "</span></div>";
+        $style = 'background-color:#7f8c8d;color:#fff;padding:3px;margin:2px;border-radius:3px;';
+        return "<div style=\"margin-top:4px\"><span style=\"$style\">" . str_replace(',', "</span><span style=\"$style\">", $value) . "</span></div>";
     }
 }
