@@ -26,13 +26,15 @@ class Wfn_Tagger_Adminhtml_Widget_AjaxController extends Mage_Adminhtml_Controll
         }
 
         try {
-            Wfn_Tagger_Model_Resource_TagRelation::addRelationByTagName(
+            $tag = Wfn_Tagger_Model_Resource_TagRelation::addRelationByTagName(
                 $params['tag_name'],
                 $params['entity_id'],
                 $params['entity_type'],
                 Mage::getSingleton('admin/session')->getUser()->getUserId()
             );
+
             $response['success'] = true;
+            $response['tag_name'] = $tag->name;
         } catch (Wfn_Tagger_Model_Validation_Exception $e) {
             $response['error_message'] = $this->__($e->getMessage());
         } catch (Exception $e) {
