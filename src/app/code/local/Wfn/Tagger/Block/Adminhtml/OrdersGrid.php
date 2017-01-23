@@ -7,14 +7,6 @@ class Wfn_Tagger_Block_Adminhtml_OrdersGrid extends Mage_Adminhtml_Block_Sales_O
     /**
      * {@inheritdoc}
      */
-    protected function _getCollectionClass()
-    {
-        return 'wfn_tagger/orderGridCollection';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     protected function _prepareColumns()
     {
         $this->addColumnAfter('wfntags', [

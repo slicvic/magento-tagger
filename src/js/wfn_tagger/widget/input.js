@@ -71,8 +71,8 @@ Wfn.Modules.Tagger.InputWidget = (function($) {
                 }).done(function(response) {
                     if (response.success) {
                         callback({
-                            id: response.tag_name,
-                            name: response.tag_name
+                            id: response.tag,
+                            name: response.tag
                         });
                     } else {
                         callback(false);
