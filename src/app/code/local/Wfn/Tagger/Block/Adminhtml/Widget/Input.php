@@ -1,6 +1,6 @@
 <?php
 /**
- * Input widget for tagging entities.
+ * Block for rendering input tagging widget.
  */
 class Wfn_Tagger_Block_Adminhtml_Widget_Input
     extends Wfn_Tagger_Block_Adminhtml_Widget_Abstract

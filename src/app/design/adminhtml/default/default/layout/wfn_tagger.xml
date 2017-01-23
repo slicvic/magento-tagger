@@ -1,14 +1,13 @@
 <?xml version="1.0"?>
 <layout>
     <adminhtml_sales_order_view>
-        <!-- Add required JS and CSS -->
+        <!-- Add "Tags" tab -->
         <reference name="head">
-            <action method="addCss"><name>wfn_tagger/selectize/selectize.css</name></action>
-            <action method="addJs"><script>wfn_tagger/jquery/jquery-3.1.1.min.no-conflict.js</script></action>
-            <action method="addJs"><script>wfn_tagger/selectize/selectize.min.js</script></action>
+            <action method="addCss"><name>wfn_tagger/vendor/selectize/selectize.css</name></action>
+            <action method="addJs"><script>wfn_tagger/vendor/jquery/jquery-3.1.1.min.no-conflict.js</script></action>
+            <action method="addJs"><script>wfn_tagger/vendor/selectize/selectize.min.js</script></action>
             <action method="addJs"><script>wfn_tagger/widget/input.js</script></action>
         </reference>
-        <!-- Add "Tags" tab -->
         <reference name="sales_order_tabs">
             <action method="addTab">
                 <name>order_tab_wfn_tagger</name>
@@ -16,32 +15,19 @@
             </action>
         </reference>
     </adminhtml_sales_order_view>
-
     <adminhtml_customer_edit>
-        <!-- Add required JS and CSS -->
+        <!-- Add "Tags" tab -->
         <reference name="head">
-            <action method="addCss"><name>wfn_tagger/selectize/selectize.css</name></action>
-            <action method="addJs"><script>wfn_tagger/jquery/jquery-3.1.1.min.no-conflict.js</script></action>
-            <action method="addJs"><script>wfn_tagger/selectize/selectize.min.js</script></action>
+            <action method="addCss"><name>wfn_tagger/vendor/selectize/selectize.css</name></action>
+            <action method="addJs"><script>wfn_tagger/vendor/jquery/jquery-3.1.1.min.no-conflict.js</script></action>
+            <action method="addJs"><script>wfn_tagger/vendor/selectize/selectize.min.js</script></action>
             <action method="addJs"><script>wfn_tagger/widget/input.js</script></action>
         </reference>
-        <!-- Add "Tags" tab -->
         <reference name="customer_edit_tabs">
             <action method="addTab">
                 <name>customer_tab_wfn_tagger</name>
-                <block>wfn_tagger/adminhtml_customerViewTagsTab</block>
+                <block>wfn_tagger/adminhtml_customerEditTagsTab</block>
             </action>
         </reference>
     </adminhtml_customer_edit>
-
-    <adminhtml_sales_order_create_index>
-        <reference name="head">
-            <action method="addCss"><name>wfn_tagger/selectize/selectize.css</name></action>
-            <action method="addJs"><script>wfn_tagger/jquery/jquery-3.1.1.min.no-conflict.js</script></action>
-            <action method="addJs"><script>wfn_tagger/selectize/selectize.min.js</script></action>
-        </reference>
-        <reference name="gift_options">
-            <block type="wfn_tagger/adminhtml_orderCreateTags" template="wfn_tagger/order-create-tags.phtml" />
-        </reference>
-    </adminhtml_sales_order_create_index>
 </layout>

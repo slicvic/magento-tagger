@@ -1,8 +1,8 @@
 <?php
 /**
- * Customer view tags tab block.
+ * Block for rendering tags tab on customer edit page.
  */
-class Wfn_Tagger_Block_Adminhtml_CustomerViewTagsTab
+class Wfn_Tagger_Block_Adminhtml_CustomerEditTagsTab
     extends Mage_Adminhtml_Block_Template
     implements Mage_Adminhtml_Block_Widget_Tab_Interface
 {
@@ -11,7 +11,7 @@ class Wfn_Tagger_Block_Adminhtml_CustomerViewTagsTab
      */
     protected function _construct()
     {
-        $this->_template = 'wfn_tagger/customer-view-tags-tab.phtml';
+        $this->_template = 'wfn_tagger/customer-edit-tags-tab.phtml';
 
         $this->setChild('tag_widget', new Wfn_Tagger_Block_Adminhtml_Widget_Input(
             Mage::registry('current_customer')->getId(),
