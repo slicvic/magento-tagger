@@ -40,7 +40,7 @@ class Wfn_Tagger_Model_Tag extends Mage_Core_Model_Abstract
 
         if (!Zend_Validate::is($this->name, 'Regex', ['pattern' => sprintf('/^[a-zA-Z\s]{%s,}$/', self::MINIMUM_NAME_LENGTH)])) {
             $errors[] = Mage::helper('wfn_tagger')
-                ->__('Tag name must be at least %s characters long and contain only letters and spaces.', self::MINIMUM_NAME_LENGTH);
+                ->__('Tags must be at least %s characters long and contain only letters and spaces.', self::MINIMUM_NAME_LENGTH);
         }
 
         if (empty($errors)) {
