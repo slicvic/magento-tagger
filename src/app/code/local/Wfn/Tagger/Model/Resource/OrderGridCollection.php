@@ -1,6 +1,6 @@
 <?php
 /**
- * Collection that filters sales orders grid by tag name.
+ * Collection that filters sales orders grid by tag.
  */
 class Wfn_Tagger_Model_Resource_OrderGridCollection extends Mage_Sales_Model_Resource_Order_Grid_Collection
 {

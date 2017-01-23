@@ -22,7 +22,7 @@ class Wfn_Tagger_Block_Adminhtml_OrdersGrid extends Mage_Adminhtml_Block_Sales_O
     }
 
     /**
-     * Callback that filters collection by tag name.
+     * Callback that filters collection by tag.
      *
      * @param Wfn_Tagger_Model_Resource_OrdersGridCollection $collection
      * @param Mage_Adminhtml_Block_Widget_Grid_Column $column
