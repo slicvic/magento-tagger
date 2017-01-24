@@ -50,35 +50,36 @@ class Wfn_Tagger_Model_Resource_TagRelation extends Mage_Core_Model_Resource_Db_
     /**
      * Create tag if it doesn't exist and add relation to entity.
      *
-     * @param string $tagName
+     * @param string $name
      * @param int $entityId
      * @param One of the Wfn_Tagger_Model_TagRelation::ENTITY_TYPE_* constants $entityType
      * @param int $createdUid
      * @return Wfn_Tagger_Model_Tag
      * @throws Exception
      */
-    public static function addRelationByTagName($tagName, $entityId, $entityType, $createdUid)
+    public static function addRelationByTagName($name, $entityId, $entityType, $createdUid)
     {
         $tagResource = Mage::getResourceModel('wfn_tagger/tag');
 
         try {
             $tagResource->beginTransaction();
 
+            $tag = Wfn_Tagger_Model_Resource_Tag::loadByName($name);
+
             // Check if tag already exists, and if not, create it
-            $tag = Wfn_Tagger_Model_Resource_Tag::loadByName($tagName);
             if (!$tag->getId()) {
-                $tag->name = ucwords(strtolower(trim($tagName)));
-                $tag->created_uid = $createdUid;
-                $tag->save();
+                $tag->setData('name', $name)
+                    ->setData('created_uid', $createdUid)
+                    ->save();
             }
 
-            // Assign tag to entity
-            $tagRelation = Mage::getModel('wfn_tagger/tagRelation');
-            $tagRelation->tag_id = $tag->getId();
-            $tagRelation->entity_id = $entityId;
-            $tagRelation->entity_type = $entityType;
-            $tagRelation->created_uid = $createdUid;
-            $tagRelation->save();
+            // Create relation
+             Mage::getModel('wfn_tagger/tagRelation')
+                ->setData('tag_id', $tag->getId())
+                ->setData('entity_id', $entityId)
+                ->setData('entity_type', $entityType)
+                ->setData('created_uid', $createdUid)
+                ->save();
 
             $tagResource->commit();
 

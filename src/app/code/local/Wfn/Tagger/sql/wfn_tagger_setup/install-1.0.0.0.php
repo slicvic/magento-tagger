@@ -1,7 +1,7 @@
 <?php
 /**
  * This install script will create the following database tables
- * for storing tags and their related entities.
+ * for storing tags and relations.
  *
  * - wfn_tagger_tag
  * - wfn_tagger_tag_relation

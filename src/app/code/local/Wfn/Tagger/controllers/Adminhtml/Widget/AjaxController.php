@@ -1,6 +1,6 @@
 <?php
 /**
- * Widget AJAX controller.
+ * Widget controller for tagging orders and customers.
  */
 class Wfn_Tagger_Adminhtml_Widget_AjaxController extends Mage_Adminhtml_Controller_Action
 {
@@ -34,7 +34,7 @@ class Wfn_Tagger_Adminhtml_Widget_AjaxController extends Mage_Adminhtml_Controll
             );
 
             $response['success'] = true;
-            $response['tag'] = $tag->name;
+            $response['tag'] = $tag->getName();
         } catch (Wfn_Tagger_Model_Validation_Exception $e) {
             $response['error_message'] = $this->__($e->getMessage());
         } catch (Exception $e) {
