@@ -24,17 +24,16 @@ class Wfn_Tagger_Adminhtml_TagsController extends Mage_Adminhtml_Controller_Acti
      */
     public function createAction()
     {
-        $params = $this->getRequest()->getParams();
-
-        if (empty($params['name'])) {
-            $this->_getSession()->addError('Invalid parameters.');
-            return $this->_redirect('*/*/index');
-        }
+        $params = [
+            'name' => $this->getRequest()->getParam('name'),
+            'user_id' => $this->getRequest()->getParam('user_id')
+        ];
 
         try {
+
             $tag = Mage::getModel('wfn_tagger/tag')
                 ->setName($params['name'])
-                ->setUserId((empty($params['user_id'])) ? null : $params['user_id'])
+                ->setUserId($params['user_id'] ?: null)
                 ->setCreatedUid(Mage::getSingleton('admin/session')->getUser()->getUserId())
                 ->save();
             $this->_getSession()->addSuccess(sprintf('Tag "%s" created.', $tag->getName()));
@@ -51,16 +50,14 @@ class Wfn_Tagger_Adminhtml_TagsController extends Mage_Adminhtml_Controller_Acti
     public function updateAction()
     {
         $id = $this->getRequest()->getParam('id');
-        $params = $this->getRequest()->getParams();
-
-        if (empty($id) || empty($params['name'])) {
-            $this->_getSession()->addError('Invalid parameters.');
-            return $this->_redirect('*/*/index');
-        }
+        $params = [
+            'name' => $this->getRequest()->getParam('name'),
+            'user_id' => $this->getRequest()->getParam('user_id')
+        ];
 
         $tag = Mage::getModel('wfn_tagger/tag')->load($id);
 
-        if (!$tag) {
+        if (!$tag->getId()) {
             $this->_getSession()->addError('Tag not found.');
             return $this->_redirect('*/*/index');
         }
@@ -68,7 +65,7 @@ class Wfn_Tagger_Adminhtml_TagsController extends Mage_Adminhtml_Controller_Acti
         try {
             $tag
                 ->setName($params['name'])
-                ->setUserId((empty($params['user_id'])) ? null : $params['user_id'])
+                ->setUserId($params['user_id'] ?: null)
                 ->save();
             $this->_getSession()->addSuccess(sprintf('Tag "%s" updated.', $tag->getName()));
         } catch (Exception $e) {
@@ -84,16 +81,15 @@ class Wfn_Tagger_Adminhtml_TagsController extends Mage_Adminhtml_Controller_Acti
     public function deleteAction()
     {
         $id = $this->getRequest()->getParam('id');
+        $tag = Mage::getModel('wfn_tagger/tag')->load($id);
 
-        if (!$id) {
-            $this->_getSession()->addError('Invalid tag ID.');
+        if (!$tag->getId()) {
+            $this->_getSession()->addError('Tag not found.');
             return $this->_redirect('*/*/index');
         }
 
         try {
-            $tag = Mage::getModel('wfn_tagger/tag')
-                ->load($id)
-                ->delete();
+            $tag->delete();
             $this->_getSession()->addSuccess(sprintf('Tag "%s" deleted.', $tag->getName()));
         } catch (Exception $e) {
             $this->_getSession()->addError($e->getMessage());

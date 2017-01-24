@@ -74,30 +74,31 @@
     </div>
 </div>
 <script>
-    (function($) {
-        $(function() {
-            $('body').on('click', '.js-create-tag-btn', function() {
-                var url = '<?php echo $this->getUrl('wfn_tagger/tags/create') ?>';
-                url += '?name=' + $('#tag_new_name').val();
-                url += '&user_id=' + $('#tag_new_user_id').val();
-                window.location = url;
-            });
-
-            $('body').on('click', '.js-update-tag-btn', function() {
-                var tagId = $(this).data('tag-id');
-                var url = '<?php echo $this->getUrl('wfn_tagger/tags/update/id/{id}') ?>';
-                url = url.replace('{id}', tagId);
-                url += '?name=' + $('#tag_' + tagId + '_name').val();
-                url += '&user_id=' + $('#tag_' + tagId + '_user_id').val();
-                window.location = url;
-            });
-
-            $('body').on('click', '.js-delete-tag-btn', function() {
-                var tagId = $(this).data('tag-id');
-                var url = '<?php echo $this->getUrl('wfn_tagger/tags/delete/id/{id}') ?>';
-                url = url.replace('{id}', tagId);
-                window.location = url;
-            });
+// TODO: Refactor to use AJAX
+(function($) {
+    $(function() {
+        $('body').on('click', '.js-create-tag-btn', function() {
+            var url = '<?php echo $this->getUrl('wfn_tagger/tags/create') ?>';
+            url += '?name=' + $('#tag_new_name').val();
+            url += '&user_id=' + $('#tag_new_user_id').val();
+            window.location = url;
         });
-    }(jQuery));
+
+        $('body').on('click', '.js-update-tag-btn', function() {
+            var tagId = $(this).data('tag-id');
+            var url = '<?php echo $this->getUrl('wfn_tagger/tags/update/id/{id}') ?>';
+            url = url.replace('{id}', tagId);
+            url += '?name=' + $('#tag_' + tagId + '_name').val();
+            url += '&user_id=' + $('#tag_' + tagId + '_user_id').val();
+            window.location = url;
+        });
+
+        $('body').on('click', '.js-delete-tag-btn', function() {
+            var tagId = $(this).data('tag-id');
+            var url = '<?php echo $this->getUrl('wfn_tagger/tags/delete/id/{id}') ?>';
+            url = url.replace('{id}', tagId);
+            window.location = url;
+        });
+    });
+}(jQuery));
 </script>
