@@ -1,8 +1,8 @@
 <?php
 /**
- * Widget AJAX controller.
+ * Widget controller for tagging orders and customers.
  */
-class Wfn_Tagger_Adminhtml_Widget_AjaxController extends Mage_Adminhtml_Controller_Action
+class Wfn_Tagger_Adminhtml_Widget_InputController extends Mage_Adminhtml_Controller_Action
 {
     /**
      * Tag an entity.
@@ -12,18 +12,12 @@ class Wfn_Tagger_Adminhtml_Widget_AjaxController extends Mage_Adminhtml_Controll
     public function addTagAction()
     {
         $request = $this->getRequest();
-        $params = $request->getParams();
-        $response = [
-            'success' => false
+        $response = ['success' => false];
+        $params = [
+            'tag_name' => $request->getParam('tag_name'),
+            'entity_id' => $request->getParam('entity_id'),
+            'entity_type' => $request->getParam('entity_type'),
         ];
-
-        if (empty($params['tag_name'])
-            || empty($params['entity_id'])
-            || empty($params['entity_type'])
-        ) {
-            $response['error_message'] = $this->__('Invalid parameters.');
-            return $this->sendJsonResponse($response);
-        }
 
         try {
             $tag = Wfn_Tagger_Model_Resource_TagRelation::addRelationByTagName(
@@ -34,7 +28,7 @@ class Wfn_Tagger_Adminhtml_Widget_AjaxController extends Mage_Adminhtml_Controll
             );
 
             $response['success'] = true;
-            $response['tag'] = $tag->name;
+            $response['tag'] = $tag->getName();
         } catch (Wfn_Tagger_Model_Validation_Exception $e) {
             $response['error_message'] = $this->__($e->getMessage());
         } catch (Exception $e) {
@@ -50,18 +44,12 @@ class Wfn_Tagger_Adminhtml_Widget_AjaxController extends Mage_Adminhtml_Controll
     public function removeTagAction()
     {
         $request = $this->getRequest();
-        $params = $request->getParams();
-        $response = [
-            'success' => false
+        $response = ['success' => false];
+        $params = [
+            'tag_name' => $request->getParam('tag_name'),
+            'entity_id' => $request->getParam('entity_id'),
+            'entity_type' => $request->getParam('entity_type'),
         ];
-
-        if (empty($params['tag_name'])
-            || empty($params['entity_id'])
-            || empty($params['entity_type'])
-        ) {
-            $response['error_message'] = $this->__('Invalid parameters.');
-            return $this->sendJsonResponse($response);
-        }
 
         try {
             $tag = Wfn_Tagger_Model_Resource_Tag::loadByName($params['tag_name']);
@@ -71,13 +59,17 @@ class Wfn_Tagger_Adminhtml_Widget_AjaxController extends Mage_Adminhtml_Controll
                 return $this->sendJsonResponse($response);
             }
 
-            Wfn_Tagger_Model_Resource_TagRelation::deleteByTagIdEntityIdAndEntityType(
+            $affectedRows = Wfn_Tagger_Model_Resource_TagRelation::deleteByTagIdEntityIdAndEntityType(
                 $tag->getId(),
                 $params['entity_id'],
                 $params['entity_type']
             );
 
-            $response['success'] = true;
+            if ($affectedRows) {
+                $response['success'] = true;
+            } else {
+                $response['error_message'] = 'Tag could not be removed.';
+            }
         } catch (Exception $e) {
             $response['error_message'] = $this->__('Failed to remove tag. Error: ' . $e->getMessage());
         }

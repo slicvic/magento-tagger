@@ -14,4 +14,27 @@
             </admin>
         </resources>
     </acl>
+    <menu>
+        <system>
+            <children>
+                <wfn translate="title">
+                    <title>WFN</title>
+                    <sort_order>1</sort_order>
+                    <children>
+                        <wfn_tagger translate="title">
+                            <title>Tagger</title>
+                            <sort_order>1</sort_order>
+                            <children>
+                                <wfn_tagger_manage translate="title">
+                                    <title>Manage Tags</title>
+                                    <action>wfntagger/tags/index</action>
+                                    <sort_order>1</sort_order>
+                                </wfn_tagger_manage>
+                            </children>
+                        </wfn_tagger>
+                    </children>
+                </wfn>
+            </children>
+        </system>
+    </menu>
 </config>

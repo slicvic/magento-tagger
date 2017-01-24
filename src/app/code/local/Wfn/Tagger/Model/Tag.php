@@ -26,6 +26,8 @@ class Wfn_Tagger_Model_Tag extends Mage_Core_Model_Abstract
             throw new Wfn_Tagger_Model_Validation_Exception(implode('', $validationResult));
         }
 
+        $this->setData('name', ucwords(strtolower(trim($this->getData('name')))));
+
         parent::_beforeSave();
     }
 
@@ -38,7 +40,7 @@ class Wfn_Tagger_Model_Tag extends Mage_Core_Model_Abstract
     {
         $errors = [];
 
-        if (!Zend_Validate::is($this->name, 'Regex', ['pattern' => sprintf('/^[a-zA-Z\s]{%s,}$/', self::MINIMUM_NAME_LENGTH)])) {
+        if (!Zend_Validate::is($this->getData('name'), 'Regex', ['pattern' => sprintf('/^[a-zA-Z\s]{%s,}$/', self::MINIMUM_NAME_LENGTH)])) {
             $errors[] = Mage::helper('wfn_tagger')
                 ->__('Tags must be at least %s characters long and contain only letters and spaces.', self::MINIMUM_NAME_LENGTH);
         }

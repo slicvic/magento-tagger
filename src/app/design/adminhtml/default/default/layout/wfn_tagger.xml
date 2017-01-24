@@ -30,4 +30,12 @@
             </action>
         </reference>
     </adminhtml_customer_edit>
+    <wfn_tagger_tags_index>
+        <reference name="head">
+            <action method="addJs"><script>wfn_tagger/vendor/jquery/jquery-3.1.1.min.no-conflict.js</script></action>
+        </reference>
+        <reference name="content">
+            <block type="wfn_tagger/adminhtml_tags_all" template="wfn_tagger/tags/index.phtml" name="wfn_tagger.tags.index"></block>
+        </reference>
+    </wfn_tagger_tags_index>
 </layout>
