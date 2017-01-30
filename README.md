@@ -1,4 +1,4 @@
-# Magento Tagger 1.0
+# Tagger Magento Module
 A Magento 1.9 module that adds the ability to tag orders and customers.
 
 ## Installation via Composer
