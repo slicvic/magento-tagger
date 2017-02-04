@@ -80,7 +80,7 @@ Wfn.Modules.Tagger.InputWidget = (function($) {
                     }
                 }).fail(function(jqXHR) {
                     callback(false);
-                    alert('Failed to add tag. Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+                    alert('Failed to add tag: ' + jqXHR.status + ' ' + jqXHR.statusText);
                 }).always(function() {
                     isProcessing = false;
                     elements.loadingMask.hide();
@@ -117,7 +117,7 @@ Wfn.Modules.Tagger.InputWidget = (function($) {
                         alert(response.error_message);
                     }
                 }).fail(function(jqXHR) {
-                    alert('Failed to remove tag. Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+                    alert('Failed to remove tag: ' + jqXHR.status + ' ' + jqXHR.statusText);
                 }).always(function() {
                     isProcessing = false;
                     elements.loadingMask.hide();

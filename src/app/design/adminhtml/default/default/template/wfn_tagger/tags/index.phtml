@@ -22,11 +22,11 @@
             </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr class="even">
                     <td></td>
-                    <td><input type="text" class="input-text" id="tag_new_name"></td>
+                    <td><input type="text" class="input-text" id="tag-new-name"></td>
                     <td>
-                        <select class="select" id="tag_new_user_id" style="width: 100%">
+                        <select class="select" id="tag-new-user-id" style="width: 100%">
                             <option value=""></option>
                             <?php foreach ($adminUsers as $user): ?>
                                 <option value="<?php echo $user->getId() ?>"><?php echo $user->getFirstname() . ' ' . $user->getLastname() ?></option>
@@ -40,14 +40,14 @@
                         </button>
                     </td>
                 </tr>
-                <?php foreach ($tags as $index => $tag): ?>
-                    <tr class="<?php echo ($index % 2 != 0) ? 'even' : ''?>">
+                <?php $count = 0; foreach ($tags as $tag): $count++ ?>
+                    <tr class="<?php echo ($count % 2 == 0) ? 'even ' : ''?>">
                         <td><?php echo $tag->getId() ?></td>
                         <td>
-                            <input type="text" class="input-text" id="tag_<?php echo $tag->getId() ?>_name" value="<?php echo $tag->getName() ?>">
+                            <input type="text" class="input-text" id="tag-<?php echo $tag->getId() ?>-name" value="<?php echo $tag->getName() ?>">
                         </td>
                         <td>
-                            <select class="select" id="tag_<?php echo $tag->getId() ?>_user_id" style="width: 100%">
+                            <select class="select" id="tag-<?php echo $tag->getId() ?>-user-id" style="width: 100%">
                                 <option value=""></option>
                                 <?php foreach ($adminUsers as $user): ?>
                                     <option
@@ -63,7 +63,7 @@
                             <button type="button" class="scalable save js-update-tag-btn" data-tag-id="<?php echo $tag->getId() ?>">
                                 <span><span><span>Update</span></span></span>
                             </button>
-                            <button type="button" class="scalable delete js-delete-tag-btn" data-tag-id="<?php echo $tag->getId() ?>">
+                            <button type="button" class="scalable delete js-delete-tag-btn" data-tag-id="<?php echo $tag->getId() ?>" data-tag-name="<?php echo $tag->getName() ?>">
                                 <span><span><span>Delete</span></span></span>
                             </button>
                         </td>
@@ -74,30 +74,46 @@
     </div>
 </div>
 <script>
-// TODO: Refactor to use AJAX
 (function($) {
     $(function() {
+        var loader = $('#loading-mask');
+        // Create tag
         $('body').on('click', '.js-create-tag-btn', function() {
-            var url = '<?php echo $this->getUrl('wfn_tagger/tags/create') ?>';
-            url += '?name=' + $('#tag_new_name').val();
-            url += '&user_id=' + $('#tag_new_user_id').val();
-            window.location = url;
+            loader.show();
+            $.post('<?php echo $this->getUrl('wfn_tagger/tags/create') ?>', {
+                name: $('#tag-new-name').val(),
+                user_id: $('#tag-new-user-id').val(),
+                form_key: '<?php echo $this->getFormKey() ?>'
+            }).always(function() {
+                location.reload();
+            });
         });
 
+        // Update tag
         $('body').on('click', '.js-update-tag-btn', function() {
+            loader.show();
             var tagId = $(this).data('tag-id');
-            var url = '<?php echo $this->getUrl('wfn_tagger/tags/update/id/{id}') ?>';
-            url = url.replace('{id}', tagId);
-            url += '?name=' + $('#tag_' + tagId + '_name').val();
-            url += '&user_id=' + $('#tag_' + tagId + '_user_id').val();
-            window.location = url;
+            $.post('<?php echo $this->getUrl('wfn_tagger/tags/update', ['id' => '{id}']) ?>'.replace('{id}', tagId), {
+                name: $('#tag-' + tagId + '-name').val(),
+                user_id: $('#tag-' + tagId + '-user-id').val(),
+                form_key: '<?php echo $this->getFormKey() ?>'
+            }).always(function() {
+                location.reload();
+            });
         });
 
+        // Delete tag
         $('body').on('click', '.js-delete-tag-btn', function() {
+            var tagName = $(this).data('tag-name');
+            if (!confirm('Delete tag "' + tagName + '"?')) {
+                return;
+            }
+            loader.show();
             var tagId = $(this).data('tag-id');
-            var url = '<?php echo $this->getUrl('wfn_tagger/tags/delete/id/{id}') ?>';
-            url = url.replace('{id}', tagId);
-            window.location = url;
+            $.get('<?php echo $this->getUrl('wfn_tagger/tags/delete', ['id' => '{id}']) ?>'.replace('{id}', tagId))
+                .always(function() {
+                    location.reload();
+                });
         });
     });
 }(jQuery));
