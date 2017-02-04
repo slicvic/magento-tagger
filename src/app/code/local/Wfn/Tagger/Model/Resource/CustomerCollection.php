@@ -1,6 +1,7 @@
 <?php
 /**
- * Collection that filters customers by tag.
+ * Collection that overrides customer collection to add ability to filter
+ * customers by tag.
  */
 class Wfn_Tagger_Model_Resource_CustomerCollection extends Mage_Customer_Model_Resource_Customer_Collection
 {

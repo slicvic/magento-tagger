@@ -1,7 +1,7 @@
 var Wfn = Wfn || {};
 Wfn.Modules = Wfn.Modules || {};
 Wfn.Modules.Tagger = Wfn.Modules.Tagger || {};
-Wfn.Modules.Tagger.InputWidget = (function($) {
+Wfn.Modules.Tagger.SelectizeWidget = (function($) {
     var selectize;
     var isProcessing = false;
     var settings = {

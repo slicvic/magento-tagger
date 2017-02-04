@@ -1,6 +1,6 @@
 <?php
 /**
- * Block for rendering tags tab on order view page.
+ * Block for order view page "Tags" tab.
  */
 class Wfn_Tagger_Block_Adminhtml_OrderViewTagsTab
     extends Mage_Adminhtml_Block_Template
@@ -13,7 +13,7 @@ class Wfn_Tagger_Block_Adminhtml_OrderViewTagsTab
     {
         $this->_template = 'wfn_tagger/order-view-tags-tab.phtml';
 
-        $this->setChild('tag_widget', new Wfn_Tagger_Block_Adminhtml_Widget_Input(
+        $this->setChild('tag_widget', new Wfn_Tagger_Block_Adminhtml_Widget_Selectize(
             Mage::registry('current_order')->getId(),
             Wfn_Tagger_Model_TagRelation::ENTITY_TYPE_ORDER
         ));

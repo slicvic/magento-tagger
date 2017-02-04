@@ -6,7 +6,7 @@
             <action method="addCss"><name>wfn_tagger/vendor/selectize/selectize.css</name></action>
             <action method="addJs"><script>wfn_tagger/vendor/jquery/jquery-3.1.1.min.no-conflict.js</script></action>
             <action method="addJs"><script>wfn_tagger/vendor/selectize/selectize.min.js</script></action>
-            <action method="addJs"><script>wfn_tagger/widget/input.js</script></action>
+            <action method="addJs"><script>wfn_tagger/widget/selectize.js</script></action>
         </reference>
         <reference name="sales_order_tabs">
             <action method="addTab">
@@ -21,7 +21,7 @@
             <action method="addCss"><name>wfn_tagger/vendor/selectize/selectize.css</name></action>
             <action method="addJs"><script>wfn_tagger/vendor/jquery/jquery-3.1.1.min.no-conflict.js</script></action>
             <action method="addJs"><script>wfn_tagger/vendor/selectize/selectize.min.js</script></action>
-            <action method="addJs"><script>wfn_tagger/widget/input.js</script></action>
+            <action method="addJs"><script>wfn_tagger/widget/selectize.js</script></action>
         </reference>
         <reference name="customer_edit_tabs">
             <action method="addTab">

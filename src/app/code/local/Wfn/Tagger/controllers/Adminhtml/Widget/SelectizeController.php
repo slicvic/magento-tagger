@@ -1,8 +1,8 @@
 <?php
 /**
- * Widget controller for tagging orders and customers.
+ * Selectize.js widget controller for tagging orders and customers.
  */
-class Wfn_Tagger_Adminhtml_Widget_InputController extends Wfn_Tagger_Controller_Base
+class Wfn_Tagger_Adminhtml_Widget_SelectizeController extends Wfn_Tagger_Controller_Base
 {
     /**
      * Tag an entity.
@@ -20,7 +20,7 @@ class Wfn_Tagger_Adminhtml_Widget_InputController extends Wfn_Tagger_Controller_
         ];
 
         try {
-            $tag = Wfn_Tagger_Model_Resource_TagRelation::addRelationByTagName(
+            $tag = Wfn_Tagger_Model_Resource_Tag::createTagAndRelation(
                 $params['tag_name'],
                 $params['entity_id'],
                 $params['entity_type'],

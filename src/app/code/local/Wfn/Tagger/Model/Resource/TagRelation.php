@@ -46,47 +46,4 @@ class Wfn_Tagger_Model_Resource_TagRelation extends Mage_Core_Model_Resource_Db_
             'entity_type = ?' => $entityType,
             ]);
     }
-
-    /**
-     * Create tag if it doesn't exist and add relation to entity.
-     *
-     * @param string $name
-     * @param int $entityId
-     * @param One of the Wfn_Tagger_Model_TagRelation::ENTITY_TYPE_* constants $entityType
-     * @param int $createdUid
-     * @return Wfn_Tagger_Model_Tag
-     * @throws Exception
-     */
-    public static function addRelationByTagName($name, $entityId, $entityType, $createdUid)
-    {
-        $tagResource = Mage::getResourceModel('wfn_tagger/tag');
-
-        try {
-            $tagResource->beginTransaction();
-
-            $tag = Wfn_Tagger_Model_Resource_Tag::loadByName($name);
-
-            // Check if tag already exists, and if not, create it
-            if (!$tag->getId()) {
-                $tag->setData('name', $name)
-                    ->setData('created_uid', $createdUid)
-                    ->save();
-            }
-
-            // Create relation
-             Mage::getModel('wfn_tagger/tagRelation')
-                ->setData('tag_id', $tag->getId())
-                ->setData('entity_id', $entityId)
-                ->setData('entity_type', $entityType)
-                ->setData('created_uid', $createdUid)
-                ->save();
-
-            $tagResource->commit();
-
-            return $tag;
-        } catch (Exception $e) {
-            $tagResource->rollback();
-            throw $e;
-        }
-    }
 }
