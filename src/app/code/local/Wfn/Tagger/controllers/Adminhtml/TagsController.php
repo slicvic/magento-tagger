@@ -2,7 +2,7 @@
 /**
  * Controller for creating, deleting and updating tags.
  */
-class Wfn_Tagger_Adminhtml_TagsController extends Wfn_Tagger_Controller_Base
+class Wfn_Tagger_Adminhtml_TagsController extends Wfn_Tagger_Controller_Adminhtml_Base
 {
     /**
      * List all tags.

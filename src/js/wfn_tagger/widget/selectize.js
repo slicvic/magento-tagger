@@ -12,7 +12,7 @@ Wfn.Modules.Tagger.SelectizeWidget = (function($) {
         entityType: null
     };
     var elements = {
-        loadingMask: null,
+        loader: null,
         tagInput: null,
         tagButtons: null
     };
@@ -25,7 +25,7 @@ Wfn.Modules.Tagger.SelectizeWidget = (function($) {
     }
 
     function bindElements() {
-        elements.loadingMask = $('#loading-mask');
+        elements.loader = $('#loading-mask');
         elements.tagInput = $('#tag-input');
         elements.tagButtons = $('#tag-buttons');
     }
@@ -56,7 +56,7 @@ Wfn.Modules.Tagger.SelectizeWidget = (function($) {
                 }
 
                 isProcessing = true;
-                elements.loadingMask.show();
+                elements.loader.show();
 
                 $.ajax({
                     url: settings.addTagUrl,
@@ -83,7 +83,7 @@ Wfn.Modules.Tagger.SelectizeWidget = (function($) {
                     alert('Failed to add tag: ' + jqXHR.status + ' ' + jqXHR.statusText);
                 }).always(function() {
                     isProcessing = false;
-                    elements.loadingMask.hide();
+                    elements.loader.hide();
                 });
             },
             onDelete: function(values) {
@@ -97,7 +97,7 @@ Wfn.Modules.Tagger.SelectizeWidget = (function($) {
 
                 var value = values[0];
                 isProcessing = true;
-                elements.loadingMask.show();
+                elements.loader.show();
 
                 $.ajax({
                     url: settings.removeTagUrl,
@@ -120,7 +120,7 @@ Wfn.Modules.Tagger.SelectizeWidget = (function($) {
                     alert('Failed to remove tag: ' + jqXHR.status + ' ' + jqXHR.statusText);
                 }).always(function() {
                     isProcessing = false;
-                    elements.loadingMask.hide();
+                    elements.loader.hide();
                 });
 
                 return false;

@@ -2,7 +2,7 @@
 /**
  * Selectize.js widget controller for tagging orders and customers.
  */
-class Wfn_Tagger_Adminhtml_Widget_SelectizeController extends Wfn_Tagger_Controller_Base
+class Wfn_Tagger_Adminhtml_Widget_SelectizeController extends Wfn_Tagger_Controller_Adminhtml_Base
 {
     /**
      * Tag an entity.

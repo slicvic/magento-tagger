@@ -1,8 +1,8 @@
 <?php
 /**
- * Base controller.
+ * Base admin controller.
  */
-abstract class Wfn_Tagger_Controller_Base extends Mage_Adminhtml_Controller_Action
+abstract class Wfn_Tagger_Controller_Adminhtml_Base extends Mage_Adminhtml_Controller_Action
 {
     /**
      * Set a JSON response.
