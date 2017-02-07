@@ -1,6 +1,6 @@
 <?php
 /**
- * Block that overrides sales orders grid to add "Tags" column.
+ * Block that extends sales orders grid to add "Tags" column.
  */
 class Wfn_Tagger_Block_Adminhtml_OrdersGrid extends Mage_Adminhtml_Block_Sales_Order_Grid
 {
