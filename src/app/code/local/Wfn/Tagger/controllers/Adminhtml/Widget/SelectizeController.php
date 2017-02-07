@@ -1,8 +1,8 @@
 <?php
 /**
- * Widget controller for tagging orders and customers.
+ * Selectize.js widget controller for tagging orders and customers.
  */
-class Wfn_Tagger_Adminhtml_Widget_InputController extends Mage_Adminhtml_Controller_Action
+class Wfn_Tagger_Adminhtml_Widget_SelectizeController extends Wfn_Tagger_Controller_Adminhtml_Base
 {
     /**
      * Tag an entity.
@@ -20,7 +20,7 @@ class Wfn_Tagger_Adminhtml_Widget_InputController extends Mage_Adminhtml_Control
         ];
 
         try {
-            $tag = Wfn_Tagger_Model_Resource_TagRelation::addRelationByTagName(
+            $tag = Wfn_Tagger_Model_Resource_Tag::createTagAndRelation(
                 $params['tag_name'],
                 $params['entity_id'],
                 $params['entity_type'],
@@ -32,10 +32,10 @@ class Wfn_Tagger_Adminhtml_Widget_InputController extends Mage_Adminhtml_Control
         } catch (Wfn_Tagger_Model_Validation_Exception $e) {
             $response['error_message'] = $this->__($e->getMessage());
         } catch (Exception $e) {
-            $response['error_message'] = $this->__('Failed to add tag. Error: ' . $e->getMessage());
+            $response['error_message'] = $this->__('Failed to add tag: ' . $e->getMessage());
         }
 
-        return $this->sendJsonResponse($response);
+        return $this->jsonResponse($response);
     }
 
     /**
@@ -56,7 +56,7 @@ class Wfn_Tagger_Adminhtml_Widget_InputController extends Mage_Adminhtml_Control
 
             if (!$tag->getId()) {
                 $response['error_message'] = $this->__('Tag not found.');
-                return $this->sendJsonResponse($response);
+                return $this->jsonResponse($response);
             }
 
             $affectedRows = Wfn_Tagger_Model_Resource_TagRelation::deleteByTagIdEntityIdAndEntityType(
@@ -68,24 +68,13 @@ class Wfn_Tagger_Adminhtml_Widget_InputController extends Mage_Adminhtml_Control
             if ($affectedRows) {
                 $response['success'] = true;
             } else {
-                $response['error_message'] = 'Tag could not be removed.';
+                $response['error_message'] = 'Failed to remove tag.';
             }
         } catch (Exception $e) {
-            $response['error_message'] = $this->__('Failed to remove tag. Error: ' . $e->getMessage());
+            $response['error_message'] = $this->__('Failed to remove tag: ' . $e->getMessage());
         }
 
-        return $this->sendJsonResponse($response);
-    }
-
-    /**
-     * Send a JSON response.
-     *
-     * @param  array  $data
-     */
-    private function sendJsonResponse(array $data)
-    {
-        $this->getResponse()->setHeader('Content-type', 'application/json');
-        $this->getResponse()->setBody(json_encode($data));
+        return $this->jsonResponse($response);
     }
 
     /**

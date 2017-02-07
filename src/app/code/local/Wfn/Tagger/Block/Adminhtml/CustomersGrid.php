@@ -1,6 +1,6 @@
 <?php
 /**
- * Block that overrides customers grid and adds "Tags" column.
+ * Block that extends customers grid to add "Tags" column.
  */
 class Wfn_Tagger_Block_Adminhtml_CustomersGrid extends Mage_Adminhtml_Block_Customer_Grid
 {

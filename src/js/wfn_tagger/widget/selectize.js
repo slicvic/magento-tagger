@@ -1,7 +1,7 @@
 var Wfn = Wfn || {};
 Wfn.Modules = Wfn.Modules || {};
 Wfn.Modules.Tagger = Wfn.Modules.Tagger || {};
-Wfn.Modules.Tagger.InputWidget = (function($) {
+Wfn.Modules.Tagger.SelectizeWidget = (function($) {
     var selectize;
     var isProcessing = false;
     var settings = {
@@ -12,7 +12,7 @@ Wfn.Modules.Tagger.InputWidget = (function($) {
         entityType: null
     };
     var elements = {
-        loadingMask: null,
+        loader: null,
         tagInput: null,
         tagButtons: null
     };
@@ -25,7 +25,7 @@ Wfn.Modules.Tagger.InputWidget = (function($) {
     }
 
     function bindElements() {
-        elements.loadingMask = $('#loading-mask');
+        elements.loader = $('#loading-mask');
         elements.tagInput = $('#tag-input');
         elements.tagButtons = $('#tag-buttons');
     }
@@ -56,7 +56,7 @@ Wfn.Modules.Tagger.InputWidget = (function($) {
                 }
 
                 isProcessing = true;
-                elements.loadingMask.show();
+                elements.loader.show();
 
                 $.ajax({
                     url: settings.addTagUrl,
@@ -80,10 +80,10 @@ Wfn.Modules.Tagger.InputWidget = (function($) {
                     }
                 }).fail(function(jqXHR) {
                     callback(false);
-                    alert('Failed to add tag. Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+                    alert('Failed to add tag: ' + jqXHR.status + ' ' + jqXHR.statusText);
                 }).always(function() {
                     isProcessing = false;
-                    elements.loadingMask.hide();
+                    elements.loader.hide();
                 });
             },
             onDelete: function(values) {
@@ -97,7 +97,7 @@ Wfn.Modules.Tagger.InputWidget = (function($) {
 
                 var value = values[0];
                 isProcessing = true;
-                elements.loadingMask.show();
+                elements.loader.show();
 
                 $.ajax({
                     url: settings.removeTagUrl,
@@ -117,10 +117,10 @@ Wfn.Modules.Tagger.InputWidget = (function($) {
                         alert(response.error_message);
                     }
                 }).fail(function(jqXHR) {
-                    alert('Failed to remove tag. Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+                    alert('Failed to remove tag: ' + jqXHR.status + ' ' + jqXHR.statusText);
                 }).always(function() {
                     isProcessing = false;
-                    elements.loadingMask.hide();
+                    elements.loader.hide();
                 });
 
                 return false;

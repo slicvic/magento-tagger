@@ -1,6 +1,6 @@
 <?php
 /**
- * Block that renders list of defined tags.
+ * Block for managing tags via CRUD UI.
  */
 class Wfn_Tagger_Block_Adminhtml_Tags_All extends Mage_Adminhtml_Block_Template
 {

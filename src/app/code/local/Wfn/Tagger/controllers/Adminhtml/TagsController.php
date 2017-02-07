@@ -2,7 +2,7 @@
 /**
  * Controller for creating, deleting and updating tags.
  */
-class Wfn_Tagger_Adminhtml_TagsController extends Mage_Adminhtml_Controller_Action
+class Wfn_Tagger_Adminhtml_TagsController extends Wfn_Tagger_Controller_Adminhtml_Base
 {
     /**
      * List all tags.
@@ -30,18 +30,17 @@ class Wfn_Tagger_Adminhtml_TagsController extends Mage_Adminhtml_Controller_Acti
         ];
 
         try {
-
             $tag = Mage::getModel('wfn_tagger/tag')
                 ->setName($params['name'])
                 ->setUserId($params['user_id'] ?: null)
                 ->setCreatedUid(Mage::getSingleton('admin/session')->getUser()->getUserId())
                 ->save();
-            $this->_getSession()->addSuccess(sprintf('Tag "%s" created.', $tag->getName()));
+            $this->_getSession()->addSuccess(sprintf('Created tag "%s"', $tag->getName()));
         } catch (Exception $e) {
             $this->_getSession()->addError($e->getMessage());
         }
 
-        return $this->_redirect('*/*/index');
+        return $this->jsonResponse();
     }
 
     /**
@@ -58,8 +57,8 @@ class Wfn_Tagger_Adminhtml_TagsController extends Mage_Adminhtml_Controller_Acti
         $tag = Mage::getModel('wfn_tagger/tag')->load($id);
 
         if (!$tag->getId()) {
-            $this->_getSession()->addError('Tag not found.');
-            return $this->_redirect('*/*/index');
+            $this->_getSession()->addError("Tag ID $id not found.");
+            return $this->jsonResponse();
         }
 
         try {
@@ -67,12 +66,12 @@ class Wfn_Tagger_Adminhtml_TagsController extends Mage_Adminhtml_Controller_Acti
                 ->setName($params['name'])
                 ->setUserId($params['user_id'] ?: null)
                 ->save();
-            $this->_getSession()->addSuccess(sprintf('Tag "%s" updated.', $tag->getName()));
+            $this->_getSession()->addSuccess(sprintf('Updated tag "%s"', $tag->getName()));
         } catch (Exception $e) {
             $this->_getSession()->addError($e->getMessage());
         }
 
-        return $this->_redirect('*/*/index');
+        return $this->jsonResponse();
     }
 
     /**
@@ -84,18 +83,18 @@ class Wfn_Tagger_Adminhtml_TagsController extends Mage_Adminhtml_Controller_Acti
         $tag = Mage::getModel('wfn_tagger/tag')->load($id);
 
         if (!$tag->getId()) {
-            $this->_getSession()->addError('Tag not found.');
-            return $this->_redirect('*/*/index');
+            $this->_getSession()->addError("Tag ID $id not found.");
+            return $this->jsonResponse();
         }
 
         try {
             $tag->delete();
-            $this->_getSession()->addSuccess(sprintf('Tag "%s" deleted.', $tag->getName()));
+            $this->_getSession()->addSuccess(sprintf('Deleted tag "%s"', $tag->getName()));
         } catch (Exception $e) {
-            $this->_getSession()->addError($e->getMessage());
+            $this->_getSession()->addError('Failed to delete tag: ' . $e->getMessage());
         }
 
-        return $this->_redirect('*/*/index');
+        return $this->jsonResponse();
     }
 
     /**
