@@ -30,7 +30,7 @@ Make sure to set `magento-root-dir` to the directory where your Magento resides 
 }
 ```
 ## Snapshots
-##### Tag a customer
+### Tag a customer
 
 1. ![Alt text](https://cloud.githubusercontent.com/assets/4705073/24682316/055da3e0-1967-11e7-90e1-a56ec71c2590.png)
 
@@ -43,7 +43,7 @@ Make sure to set `magento-root-dir` to the directory where your Magento resides 
 
 5. ![Alt text](https://cloud.githubusercontent.com/assets/4705073/24682320/05639bce-1967-11e7-9dc4-b03f429c3fd1.png)
 
-##### Tag an order
+### Tag an order
 
 1. ![Alt text](https://cloud.githubusercontent.com/assets/4705073/24682325/056dd26a-1967-11e7-9bf8-cb560e12132b.png)
 
