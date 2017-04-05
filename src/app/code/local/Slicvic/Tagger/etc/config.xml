@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * This is the main configuration file. Defines all models, blocks,
+ * helpers, etc.
+ */
+-->
+<config>
+    <modules>
+        <Slicvic_Tagger>
+            <version>1.1.0.0</version>
+        </Slicvic_Tagger>
+    </modules>
+    <admin>
+        <routers>
+            <slicvic_tagger>
+                <use>admin</use>
+                <args>
+                    <module>Slicvic_Tagger_Adminhtml</module>
+                    <frontName>slicvictagger</frontName>
+                </args>
+            </slicvic_tagger>
+        </routers>
+    </admin>
+    <adminhtml>
+        <layout>
+            <updates>
+                <slicvic_tagger>
+                    <file>slicvic_tagger.xml</file>
+                </slicvic_tagger>
+            </updates>
+        </layout>
+    </adminhtml>
+    <global>
+        <blocks>
+            <slicvic_tagger>
+                <class>Slicvic_Tagger_Block</class>
+            </slicvic_tagger>
+            <adminhtml>
+                <rewrite>
+                    <!-- Rewrite orders grid to add tags column -->
+                    <sales_order_grid>Slicvic_Tagger_Block_Adminhtml_OrdersGrid</sales_order_grid>
+                </rewrite>
+                <rewrite>
+                    <!-- Rewrite customers grid to add tags column -->
+                    <customer_grid>Slicvic_Tagger_Block_Adminhtml_CustomersGrid</customer_grid>
+                </rewrite>
+            </adminhtml>
+        </blocks>
+        <helpers>
+            <slicvic_tagger>
+                <class>Slicvic_Tagger_Helper</class>
+            </slicvic_tagger>
+        </helpers>
+        <models>
+            <slicvic_tagger>
+                <class>Slicvic_Tagger_Model</class>
+                <resourceModel>slicvic_tagger_resource</resourceModel>
+            </slicvic_tagger>
+            <slicvic_tagger_resource>
+                <class>Slicvic_Tagger_Model_Resource</class>
+                <entities>
+                    <tag>
+                        <table>slicvic_tagger_tag</table>
+                    </tag>
+                    <relation>
+                        <table>slicvic_tagger_tag_relation</table>
+                    </relation>
+                </entities>
+            </slicvic_tagger_resource>
+            <customer_resource>
+                <rewrite>
+                    <!-- Rewrite customer collection to add tags field -->
+                    <customer_collection>Slicvic_Tagger_Model_Resource_CustomerCollection</customer_collection>
+                </rewrite>
+            </customer_resource>
+            <sales_resource>
+                <rewrite>
+                    <!-- Rewrite order grid collection to add tags field -->
+                    <order_grid_collection>Slicvic_Tagger_Model_Resource_OrderGridCollection</order_grid_collection>
+                </rewrite>
+            </sales_resource>
+        </models>
+        <resources>
+            <slicvic_tagger_setup>
+                <setup>
+                    <module>Slicvic_Tagger</module>
+                </setup>
+            </slicvic_tagger_setup>
+        </resources>
+    </global>
+</config>

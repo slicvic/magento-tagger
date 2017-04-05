@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<layout>
+    <adminhtml_sales_order_view>
+        <!-- Add "Tags" tab -->
+        <reference name="head">
+            <action method="addCss"><name>slicvic_tagger/vendor/selectize/selectize.css</name></action>
+            <action method="addJs"><script>slicvic_tagger/vendor/jquery/jquery-3.1.1.min.no-conflict.js</script></action>
+            <action method="addJs"><script>slicvic_tagger/vendor/selectize/selectize.min.js</script></action>
+            <action method="addJs"><script>slicvic_tagger/widget/selectize.js</script></action>
+        </reference>
+        <reference name="sales_order_tabs">
+            <action method="addTab">
+                <name>order_tab_slicvic_tagger</name>
+                <block>slicvic_tagger/adminhtml_orderViewTagsTab</block>
+            </action>
+        </reference>
+    </adminhtml_sales_order_view>
+    <adminhtml_customer_edit>
+        <!-- Add "Tags" tab -->
+        <reference name="head">
+            <action method="addCss"><name>slicvic_tagger/vendor/selectize/selectize.css</name></action>
+            <action method="addJs"><script>slicvic_tagger/vendor/jquery/jquery-3.1.1.min.no-conflict.js</script></action>
+            <action method="addJs"><script>slicvic_tagger/vendor/selectize/selectize.min.js</script></action>
+            <action method="addJs"><script>slicvic_tagger/widget/selectize.js</script></action>
+        </reference>
+        <reference name="customer_edit_tabs">
+            <action method="addTab">
+                <name>customer_tab_slicvic_tagger</name>
+                <block>slicvic_tagger/adminhtml_customerEditTagsTab</block>
+            </action>
+        </reference>
+    </adminhtml_customer_edit>
+    <slicvic_tagger_tags_index>
+        <reference name="head">
+            <action method="addJs"><script>slicvic_tagger/vendor/jquery/jquery-3.1.1.min.no-conflict.js</script></action>
+        </reference>
+        <reference name="content">
+            <block type="slicvic_tagger/adminhtml_tags_all" template="slicvic_tagger/tags/index.phtml" name="slicvic_tagger.tags.index"></block>
+        </reference>
+    </slicvic_tagger_tags_index>
+</layout>

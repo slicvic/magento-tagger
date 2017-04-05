@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * This file is used to activate the module.
+ */
+-->
+<config>
+    <modules>
+        <Slicvic_Tagger>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Slicvic_Tagger>
+    </modules>
+</config>

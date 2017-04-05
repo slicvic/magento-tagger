@@ -1,5 +1,5 @@
 {
-    "name": "wfn/magento-module-tagger",
+    "name": "slicvic/magento-module-tagger",
     "type": "magento-module",
     "description": "Magento 1.9 extension for tagging orders and customers.",
     "require": {
@@ -7,12 +7,12 @@
     },
     "extra":{
         "map":[
-            ["src/app/etc/modules/Wfn_Tagger.xml", "app/etc/modules/Wfn_Tagger.xml"],
-            ["src/app/code/local/Wfn/Tagger/", "app/code/local/Wfn/Tagger"],
-            ["src/app/design/adminhtml/default/default/template/wfn_tagger/", "app/design/adminhtml/default/default/template/wfn_tagger"],
-            ["src/app/design/adminhtml/default/default/layout/wfn_tagger.xml", "app/design/adminhtml/default/default/layout/wfn_tagger.xml"],
-            ["src/js/wfn_tagger/", "js/wfn_tagger"],
-            ["src/skin/adminhtml/default/default/wfn_tagger/", "skin/adminhtml/default/default/wfn_tagger"]
+            ["src/app/etc/modules/Slicvic_Tagger.xml", "app/etc/modules/Slicvic_Tagger.xml"],
+            ["src/app/code/local/Slicvic/Tagger/", "app/code/local/Slicvic/Tagger"],
+            ["src/app/design/adminhtml/default/default/template/slicvic_tagger/", "app/design/adminhtml/default/default/template/slicvic_tagger"],
+            ["src/app/design/adminhtml/default/default/layout/slicvic_tagger.xml", "app/design/adminhtml/default/default/layout/slicvic_tagger.xml"],
+            ["src/js/slicvic_tagger/", "js/slicvic_tagger"],
+            ["src/skin/adminhtml/default/default/slicvic_tagger/", "skin/adminhtml/default/default/slicvic_tagger"]
         ]
     }
 }
