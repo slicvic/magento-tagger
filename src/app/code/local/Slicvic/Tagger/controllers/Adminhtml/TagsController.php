@@ -10,7 +10,7 @@ class Slicvic_Tagger_Adminhtml_TagsController extends Slicvic_Tagger_Controller_
     public function indexAction()
     {
         $this
-            ->_title($this->__('WFN'))
+            ->_title($this->__('Slicvic'))
             ->_title($this->__('Tagger'))
             ->_title($this->__('Manage Tags'));
         $this->loadLayout();
