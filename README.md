@@ -29,7 +29,7 @@ Make sure to set `magento-root-dir` to the directory where your Magento resides 
     }
 }
 ```
-## Snapshots
+## Screenshots
 ### Tag a customer
 
 1. ![Alt text](https://cloud.githubusercontent.com/assets/4705073/24682316/055da3e0-1967-11e7-90e1-a56ec71c2590.png)
