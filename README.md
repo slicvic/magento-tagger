@@ -37,11 +37,12 @@ Make sure to set `magento-root-dir` to the directory where your Magento resides 
 2. ![Alt text](https://cloud.githubusercontent.com/assets/4705073/24682317/055eed72-1967-11e7-8042-8cdf69f50885.png)
 
 3. ![Alt text](https://cloud.githubusercontent.com/assets/4705073/24682318/055fd2d2-1967-11e7-9b4b-39c6d992f9d6.png)
-![Alt text](https://cloud.githubusercontent.com/assets/4705073/24682319/0560d268-1967-11e7-9687-85615116a38c.png)
 
-4. ![Alt text](https://cloud.githubusercontent.com/assets/4705073/24682322/0569d142-1967-11e7-8041-644b4ff6d23c.png)
+4. ![Alt text](https://cloud.githubusercontent.com/assets/4705073/24682319/0560d268-1967-11e7-9687-85615116a38c.png)
 
-5. ![Alt text](https://cloud.githubusercontent.com/assets/4705073/24682320/05639bce-1967-11e7-9dc4-b03f429c3fd1.png)
+5. ![Alt text](https://cloud.githubusercontent.com/assets/4705073/24682322/0569d142-1967-11e7-8041-644b4ff6d23c.png)
+
+6. ![Alt text](https://cloud.githubusercontent.com/assets/4705073/24682320/05639bce-1967-11e7-9dc4-b03f429c3fd1.png)
 
 ### Tag an order
 
