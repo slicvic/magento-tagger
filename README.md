@@ -50,6 +50,8 @@ Make sure to set `magento-root-dir` to the directory where your Magento resides 
 
 2. ![Alt text](https://cloud.githubusercontent.com/assets/4705073/24682321/056935fc-1967-11e7-9a28-93744edcebc1.png)
 
-3. ![Alt text](https://cloud.githubusercontent.com/assets/4705073/24682323/056b42ac-1967-11e7-9e55-00ab9223b183.png)
+### Manage Tags
 
-4. ![Alt text](https://cloud.githubusercontent.com/assets/4705073/24682324/056baada-1967-11e7-9001-ab9c811f57b4.png)
+1. ![Alt text](https://user-images.githubusercontent.com/4705073/33881978-9615e22c-df04-11e7-8cd6-05d143621966.png)
+
+2. ![Alt text](https://user-images.githubusercontent.com/4705073/33881979-9627ff66-df04-11e7-891b-1070ef30489f.png)
