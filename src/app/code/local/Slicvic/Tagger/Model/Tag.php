@@ -4,7 +4,7 @@
  */
 class Slicvic_Tagger_Model_Tag extends Mage_Core_Model_Abstract
 {
-    const MINIMUM_NAME_LENGTH = 3;
+    const MIN_LENGTH = 2;
 
     /**
      * {@inheritdoc}
@@ -40,9 +40,9 @@ class Slicvic_Tagger_Model_Tag extends Mage_Core_Model_Abstract
     {
         $errors = [];
 
-        if (!Zend_Validate::is($this->getData('name'), 'Regex', ['pattern' => sprintf('/^[a-zA-Z\s]{%s,}$/', self::MINIMUM_NAME_LENGTH)])) {
+        if (strlen($this->getData('name')) < self::MIN_LENGTH) {
             $errors[] = Mage::helper('slicvic_tagger')
-                ->__('Tags must be at least %s characters long and contain only letters and spaces.', self::MINIMUM_NAME_LENGTH);
+                ->__('Tags must be at least %s characters long.', self::MIN_LENGTH);
         }
 
         if (empty($errors)) {
