@@ -26,7 +26,7 @@ class Slicvic_Tagger_Model_Tag extends Mage_Core_Model_Abstract
             throw new Slicvic_Tagger_Model_Validation_Exception(implode('', $validationResult));
         }
 
-        $this->setData('name', ucwords(strtolower(trim($this->getData('name')))));
+        $this->setData('name', trim($this->getData('name')));
 
         parent::_beforeSave();
     }
