@@ -16,7 +16,6 @@
             <tr class="headings">
                 <th><span class="nobr">ID</span></th>
                 <th><span class="nobr">Name</span></th>
-                <th><span class="nobr">Assigned User</span></th>
                 <th><span class="nobr">Created At</span></th>
                 <th><span class="nobr"></span></th>
             </tr>
@@ -25,14 +24,6 @@
                 <tr class="even">
                     <td></td>
                     <td><input type="text" class="input-text" id="tag-new-name"></td>
-                    <td>
-                        <select class="select" id="tag-new-user-id" style="width: 100%">
-                            <option value=""></option>
-                            <?php foreach ($adminUsers as $user): ?>
-                                <option value="<?php echo $user->getId() ?>"><?php echo $user->getFirstname() . ' ' . $user->getLastname() ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </td>
                     <td></td>
                     <td>
                         <button class="scalable add js-create-tag-btn" type="button">
@@ -45,18 +36,6 @@
                         <td><?php echo $tag->getId() ?></td>
                         <td>
                             <input type="text" class="input-text" id="tag-<?php echo $tag->getId() ?>-name" value="<?php echo $tag->getName() ?>">
-                        </td>
-                        <td>
-                            <select class="select" id="tag-<?php echo $tag->getId() ?>-user-id" style="width: 100%">
-                                <option value=""></option>
-                                <?php foreach ($adminUsers as $user): ?>
-                                    <option
-                                        value="<?php echo $user->getId() ?>"
-                                        <?php echo ($tag->getUserId() == $user->getId()) ? ' selected' : '' ?>>
-                                        <?php echo $user->getFirstname() . ' ' . $user->getLastname() ?>
-                                    </option>
-                                <?php endforeach; ?>
-                            </select>
                         </td>
                         <td><?php echo $tag->getCreatedAt() ?></td>
                         <td>
@@ -82,7 +61,6 @@
             loader.show();
             $.post('<?php echo $this->getUrl('slicvic_tagger/tags/create') ?>', {
                 name: $('#tag-new-name').val(),
-                user_id: $('#tag-new-user-id').val(),
                 form_key: '<?php echo $this->getFormKey() ?>'
             }).always(function() {
                 location.reload();
@@ -95,7 +73,6 @@
             var tagId = $(this).data('tag-id');
             $.post('<?php echo $this->getUrl('slicvic_tagger/tags/update', ['id' => '{id}']) ?>'.replace('{id}', tagId), {
                 name: $('#tag-' + tagId + '-name').val(),
-                user_id: $('#tag-' + tagId + '-user-id').val(),
                 form_key: '<?php echo $this->getFormKey() ?>'
             }).always(function() {
                 location.reload();

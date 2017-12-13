@@ -25,14 +25,12 @@ class Slicvic_Tagger_Adminhtml_TagsController extends Slicvic_Tagger_Controller_
     public function createAction()
     {
         $params = [
-            'name' => $this->getRequest()->getParam('name'),
-            'user_id' => $this->getRequest()->getParam('user_id')
+            'name' => $this->getRequest()->getParam('name')
         ];
 
         try {
             $tag = Mage::getModel('slicvic_tagger/tag')
                 ->setName($params['name'])
-                ->setUserId($params['user_id'] ?: null)
                 ->setCreatedUid(Mage::getSingleton('admin/session')->getUser()->getUserId())
                 ->save();
             $this->_getSession()->addSuccess(sprintf('Created tag "%s"', $tag->getName()));
@@ -50,8 +48,7 @@ class Slicvic_Tagger_Adminhtml_TagsController extends Slicvic_Tagger_Controller_
     {
         $id = $this->getRequest()->getParam('id');
         $params = [
-            'name' => $this->getRequest()->getParam('name'),
-            'user_id' => $this->getRequest()->getParam('user_id')
+            'name' => $this->getRequest()->getParam('name')
         ];
 
         $tag = Mage::getModel('slicvic_tagger/tag')->load($id);
@@ -64,7 +61,6 @@ class Slicvic_Tagger_Adminhtml_TagsController extends Slicvic_Tagger_Controller_
         try {
             $tag
                 ->setName($params['name'])
-                ->setUserId($params['user_id'] ?: null)
                 ->save();
             $this->_getSession()->addSuccess(sprintf('Updated tag "%s"', $tag->getName()));
         } catch (Exception $e) {
@@ -102,7 +98,7 @@ class Slicvic_Tagger_Adminhtml_TagsController extends Slicvic_Tagger_Controller_
      */
     protected function _isAllowed()
     {
-        // Only allow admins
+        // Only admins allowed
         return true;
     }
 }
